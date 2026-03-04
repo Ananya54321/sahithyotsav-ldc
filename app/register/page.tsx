@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { Suspense, useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -50,6 +50,14 @@ const labelClass =
   "block text-[10px] font-black uppercase tracking-widest text-[#2d006b] mb-1";
 
 export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <RegisterPageContent />
+    </Suspense>
+  );
+}
+
+function RegisterPageContent() {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState<FormData>(defaultFormData);
   const [paymentFile, setPaymentFile] = useState<File | null>(null);

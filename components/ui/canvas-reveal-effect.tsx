@@ -192,12 +192,12 @@ const ShaderMaterial = ({
   uniforms: Uniforms;
 }) => {
   const { size } = useThree();
-  const ref = useRef<THREE.Mesh>();
+  const ref = useRef<THREE.Mesh>(null);
   let lastFrameTime = 0;
 
-  useFrame(({ clock }) => {
+  useFrame((state: any) => {
     if (!ref.current) return;
-    const timestamp = clock.getElapsedTime();
+    const timestamp = state.clock.getElapsedTime();
     if (timestamp - lastFrameTime < 1 / maxFps) {
       return;
     }
