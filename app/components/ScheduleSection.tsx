@@ -257,18 +257,15 @@ function SessionGroup({
 
       {/* ── Desktop: table ── */}
       <div className="hidden md:block rounded-xl overflow-hidden border border-[#2d006b]/10 bg-white">
-        <div className="grid grid-cols-[minmax(120px,auto)_1fr_200px_110px] gap-4 px-5 py-3 bg-[#2d006b]/4 border-b border-[#2d006b]/10">
+        <div className="grid grid-cols-[160px_1fr_200px] gap-4 px-5 py-3 bg-[#2d006b]/4 border-b border-[#2d006b]/10 items-center">
           <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#6b5f8a]">
             Time
           </span>
           <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#6b5f8a]">
             Event
           </span>
-          <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#6b5f8a]">
+          <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#6b5f8a] text-right">
             Venue
-          </span>
-          <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#6b5f8a]">
-            Session
           </span>
         </div>
 
@@ -283,25 +280,24 @@ function SessionGroup({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.04, duration: 0.3 }}
-              className="grid grid-cols-[minmax(120px,auto)_1fr_200px_110px] gap-4 px-5 py-4 items-center cursor-pointer border-b border-[#2d006b]/5 last:border-b-0 hover:bg-[#2d006b]/3 transition-colors group"
+              className="grid grid-cols-[160px_1fr_200px] gap-4 px-5 py-4 items-center cursor-pointer border-b border-[#2d006b]/5 last:border-b-0 hover:bg-[#2d006b]/3 transition-colors group"
             >
-              <span className="text-sm text-[#6b5f8a] font-medium tabular-nums">
+              <span className="text-sm text-[#6b5f8a] font-medium tabular-nums whitespace-nowrap">
                 {event.time}
               </span>
               <h3
-                className="text-sm font-bold text-[#1a0040] uppercase tracking-wide group-hover:text-[#2d006b] transition-colors flex items-center gap-2"
+                className="text-sm font-bold text-[#1a0040] uppercase tracking-wide group-hover:text-[#2d006b] transition-colors flex items-center gap-2 pr-4"
                 style={{ fontFamily: "var(--font-montserrat)" }}
               >
                 {event.title}
                 {special && (
                   <Star
                     size={12}
-                    className="text-[#d0a651] fill-[#f1cd76]"
+                    className="text-[#d0a651] fill-[#f1cd76] shrink-0"
                   />
                 )}
               </h3>
-              <span className="text-sm text-[#6b5f8a]">{event.venue}</span>
-              <span className={cfg.badge}>{cfg.label}</span>
+              <span className="text-sm text-[#6b5f8a] text-right">{event.venue}</span>
             </motion.div>
           );
         })}

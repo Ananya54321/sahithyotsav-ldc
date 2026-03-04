@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "../components/Container";
 import ScheduleSection from "../components/ScheduleSection";
@@ -57,7 +58,7 @@ export default function SchedulePage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* ── Hero ── */}
-      <section className="relative bg-[#2d006b] text-white pt-20 pb-28 text-center overflow-hidden">
+      <section className="relative bg-[#2d006b] text-white py-28 text-center overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -79,23 +80,35 @@ export default function SchedulePage() {
             transition={{ duration: 0.7 }}
             className="flex flex-col items-center"
           >
-            <span className="eyebrow-label">Event Timeline</span>
+            <span className="eyebrow-label text-[#f1cd76] drop-shadow-md border-[#f1cd76]">Event Timeline</span>
 
-            <ComicText
-              fontSize={4}
-              className="mt-2 mb-4"
-              style={{
-                backgroundColor: "#f1cd76",
-                backgroundImage:
-                  "radial-gradient(circle at 1px 1px, #d0a651 1px, transparent 0)",
-                WebkitTextStroke: `${4 * 0.35}px #1a0040`,
-                filter:
-                  "drop-shadow(5px 5px 0px #1a0040) drop-shadow(3px 3px 0px #d0a651)",
-                transform: "skewX(-8deg)",
-              }}
-            >
-              Festival Schedule
-            </ComicText>
+            <div className="flex flex-col md:flex-row items-center gap-4 mt-2 mb-4 justify-center relative">
+              <ComicText
+                fontSize={4}
+                className="z-10"
+                style={{
+                  backgroundColor: "#f1cd76",
+                  backgroundImage:
+                    "radial-gradient(circle at 1px 1px, #d0a651 1px, transparent 0)",
+                  WebkitTextStroke: `${4 * 0.35}px #1a0040`,
+                  filter:
+                    "drop-shadow(5px 5px 0px #1a0040) drop-shadow(3px 3px 0px #d0a651)",
+                  transform: "skewX(-8deg)",
+                }}
+              >
+                Festival Schedule
+              </ComicText>
+              
+              <div className="relative w-24 h-24 md:w-32 md:h-32 -mt-4 md:-mt-8 md:-ml-6 -rotate-12  mx-auto md:mx-0">
+                <Image
+                   src="/time.svg"
+                   alt="Time Watch element"
+                   fill
+                   className="object-contain"
+                   priority
+                />
+              </div>
+            </div>
 
             <p className="text-white/70 text-lg max-w-xl mx-auto mb-8">
               Two days packed with literary events, competitions, and inspiring

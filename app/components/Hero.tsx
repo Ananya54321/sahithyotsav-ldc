@@ -25,37 +25,37 @@ export default function Hero() {
 
       {/* ===== 6 DECORATIVE FLOATING ICONS — all 80px, well-dispersed ===== */}
       <div
-        className="absolute left-[5%] top-[12%] w-20 h-20 pointer-events-none select-none animate-float"
+        className="absolute left-[5%] top-[12%] w-20 h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(-10deg)" }}
       >
         <PenTool className="w-full h-full text-[#cbb386]" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute right-[6%] top-[10%] w-20 h-20 pointer-events-none select-none animate-float"
+        className="absolute right-[6%] top-[10%] w-20 h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(5deg)", animationDelay: "1s" }}
       >
         <BookOpen className="w-full h-full text-[#cbb386]" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute left-[4%] top-[55%] w-20 h-20 pointer-events-none select-none animate-float"
+        className="absolute left-[4%] top-[55%] w-20 h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(8deg)", animationDelay: "2s" }}
       >
         <Scale className="w-full h-full text-white" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute right-[5%] top-[50%] w-20 h-20 pointer-events-none select-none animate-float"
+        className="absolute right-[5%] top-[50%] w-20 h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(25deg)", animationDelay: "3s" }}
       >
         <Wand2 className="w-full h-full text-white" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute left-[15%] bottom-[10%] w-20 h-20 pointer-events-none select-none animate-float"
+        className="absolute left-[15%] bottom-[10%] w-20 h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(-20deg)", animationDelay: "4s" }}
       >
         <Feather className="w-full h-full text-[#cbb386]" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute right-[16%] bottom-[10%] w-20 h-20 pointer-events-none select-none animate-float"
+        className="absolute right-[16%] bottom-[10%] w-20 h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(-5deg)", animationDelay: "5s" }}
       >
         <GraduationCap className="w-full h-full text-white" strokeWidth={0.5} />

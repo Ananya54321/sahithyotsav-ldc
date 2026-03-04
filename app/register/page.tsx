@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -219,7 +220,7 @@ function RegisterPageContent() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <section className="relative bg-[#2d006b] text-white pt-20 pb-28 text-center overflow-hidden">
+      <section className="relative bg-[#2d006b] text-white py-28 text-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(80,0,160,0.4) 0%, transparent 70%)" }} />
         <DotPattern className="text-white/6" width={24} height={24} cr={1.2} />
         <div className="absolute bottom-0 left-0 w-full overflow-hidden">
@@ -228,12 +229,24 @@ function RegisterPageContent() {
           </svg>
         </div>
         <Container className="relative z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="flex flex-col items-center">
             <span className="eyebrow-label">{isEditMode ? "Update Your Entry" : "Join Us"}</span>
-            <ComicText fontSize={4} className="mt-2 mb-3" style={{ fontSize: "clamp(2.5rem, 7vw, 4rem)", backgroundColor: "#f1cd76", backgroundImage: "radial-gradient(circle at 1px 1px, #d0a651 1px, transparent 0)", WebkitTextStroke: `${4 * 0.35}px #1a0040`, filter: "drop-shadow(5px 5px 0px #1a0040) drop-shadow(3px 3px 0px #d0a651)", transform: "skewX(-8deg)" }}>
-              {isEditMode ? "Edit Registration" : "Register Now"}
-            </ComicText>
-            <p className="text-white/70 max-w-xl mx-auto text-lg">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-2 mb-3 relative">
+              <ComicText fontSize={4} className="z-10" style={{ fontSize: "clamp(2.5rem, 7vw, 4rem)", backgroundColor: "#f1cd76", backgroundImage: "radial-gradient(circle at 1px 1px, #d0a651 1px, transparent 0)", WebkitTextStroke: `${4 * 0.35}px #1a0040`, filter: "drop-shadow(5px 5px 0px #1a0040) drop-shadow(3px 3px 0px #d0a651)", transform: "skewX(-8deg)" }}>
+                {isEditMode ? "Edit Registration" : "Register Now"}
+              </ComicText>
+
+              <div className="relative w-32 h-32 md:w-40 md:h-40 -mt-6 md:-mt-12 ml-4 md:ml-6 z-20">
+                <Image
+                   src="/register.svg"
+                   alt="Registration element"
+                   fill
+                   className="object-contain"
+                   priority
+                />
+              </div>
+            </div>
+            <p className="text-white/70 max-w-xl mx-auto text-lg mt-4">
               {showEventSelection ? "Choose the event you'd like to participate in." : `Registering for ${formData.selectedEvent}`}
             </p>
           </motion.div>

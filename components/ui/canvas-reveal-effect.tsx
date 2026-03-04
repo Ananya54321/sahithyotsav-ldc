@@ -197,7 +197,7 @@ const ShaderMaterial = ({
 
   useFrame((state: any) => {
     if (!ref.current) return;
-    const timestamp = state.clock.getElapsedTime();
+    const timestamp = state.clock ? state.clock.getElapsedTime() : typeof performance !== "undefined" ? performance.now() / 1000 : Date.now() / 1000;
     if (timestamp - lastFrameTime < 1 / maxFps) {
       return;
     }
