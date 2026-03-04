@@ -337,45 +337,6 @@ function RegisterPageContent() {
                       </div>
                     </div>
 
-                    {/* QR + upload for paid events */}
-                    {requiresPayment && (
-                      <div className="royal-card p-4 space-y-3">
-                        <p className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
-                          Payment — ₹{selectedEventConfig!.fee}
-                        </p>
-                        {/* QR placeholder */}
-                        <div className="aspect-square w-full max-w-[200px] mx-auto rounded-xl bg-white border border-[#2d006b]/10 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="w-32 h-32 mx-auto bg-[#f5f5f5] rounded-lg flex items-center justify-center mb-2">
-                              <span className="text-[#9b9b9b] text-xs">QR Code</span>
-                            </div>
-                            <span className="text-[10px] text-[#6b5f8a]">Scan to pay ₹{selectedEventConfig!.fee}</span>
-                          </div>
-                        </div>
-                        {/* Upload */}
-                        <div>
-                          <label className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
-                            Upload Screenshot <span className="text-[#d0a651]">*</span>
-                          </label>
-                          {paymentPreview ? (
-                            <div className="relative inline-block">
-                              <img src={paymentPreview} alt="Payment" className="max-w-[160px] max-h-[160px] rounded-lg border border-[#2d006b]/15 object-cover" />
-                              <button type="button" onClick={removeFile} className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer">
-                                <X size={10} />
-                              </button>
-                            </div>
-                          ) : (
-                            <label className="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-[#2d006b]/20 rounded-lg cursor-pointer hover:border-[#2d006b]/40 transition-all">
-                              <Upload className="w-5 h-5 text-[#6b5f8a] mb-1" />
-                              <span className="text-xs text-[#6b5f8a]">Click to upload</span>
-                              <span className="text-[10px] text-[#9b9b9b]">PNG, JPG up to 5 MB</span>
-                              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
-                            </label>
-                          )}
-                          {errors.paymentScreenshot && <p className="text-red-500 text-xs mt-1">{errors.paymentScreenshot}</p>}
-                        </div>
-                      </div>
-                    )}
                   </div>
 
                   {/* Right column: form */}
@@ -461,6 +422,46 @@ function RegisterPageContent() {
                           {errors.branch && <p className="text-red-500 text-[10px] mt-0.5">{errors.branch}</p>}
                         </div>
                       </div>
+
+                      {/* Payment Section (Horizontal) */}
+                      {requiresPayment && (
+                        <div>
+                          <p className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
+                            Payment — ₹{selectedEventConfig!.fee} (Scan & Upload) <span className="text-[#d0a651]">*</span>
+                          </p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {/* QR placeholder */}
+                            <div className="aspect-square w-full max-w-[180px] rounded-xl bg-white border border-[#2d006b]/10 flex items-center justify-center">
+                              <div className="text-center">
+                                <div className="w-28 h-28 mx-auto bg-[#f5f5f5] rounded-lg flex items-center justify-center mb-2">
+                                  <span className="text-[#9b9b9b] text-xs">QR Code</span>
+                                </div>
+                                <span className="text-[10px] text-[#6b5f8a]">Scan to pay ₹{selectedEventConfig!.fee}</span>
+                              </div>
+                            </div>
+                            
+                            {/* Upload */}
+                            <div className="flex flex-col max-h-[180px]">
+                              {paymentPreview ? (
+                                <div className="relative inline-block w-fit h-full">
+                                  <img src={paymentPreview} alt="Payment" className="max-w-[180px] h-full rounded-lg border border-[#2d006b]/15 object-cover" />
+                                  <button type="button" onClick={removeFile} className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer">
+                                    <X size={10} />
+                                  </button>
+                                </div>
+                              ) : (
+                                <label className="flex flex-col items-center justify-center w-full h-full border-2 border-dashed border-[#2d006b]/20 rounded-lg cursor-pointer hover:border-[#2d006b]/40 transition-all bg-[#faf9f7] min-h-[140px]">
+                                  <Upload className="w-5 h-5 text-[#6b5f8a] mb-1" />
+                                  <span className="text-xs text-[#6b5f8a]">Click to upload</span>
+                                  <span className="text-[10px] text-[#9b9b9b]">PNG, JPG up to 5 MB</span>
+                                  <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+                                </label>
+                              )}
+                              {errors.paymentScreenshot && <p className="text-red-500 text-[10px] mt-1">{errors.paymentScreenshot}</p>}
+                            </div>
+                          </div>
+                        </div>
+                      )}
 
                       {/* Submit */}
                       <div className="space-y-2 pt-1">
