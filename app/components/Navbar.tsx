@@ -84,7 +84,7 @@ export default function Navbar() {
           <HoverBorderGradient
             containerClassName="rounded-full hidden lg:flex"
             as="button"
-            className="bg-[#2d006b] hover:bg-[#1a003d] text-[#f1cd76] text-xs px-5 py-2.5 font-bold tracking-widest uppercase transition-colors"
+            className="bg-[#f1cd76] hover:bg-[#d0a651] text-[#1a0040] text-xs px-5 py-2.5 font-bold tracking-widest uppercase transition-colors"
             onClick={() => router.push("/register")}
             style={{ fontFamily: "var(--font-montserrat)" }}
           >
@@ -111,7 +111,7 @@ export default function Navbar() {
             <HoverBorderGradient
               containerClassName="rounded-full w-full"
               as="button"
-              className="bg-[#2d006b] w-full text-center hover:bg-[#1a003d] text-[#f1cd76] text-sm px-5 py-3 font-bold tracking-widest uppercase transition-colors"
+              className="bg-[#f1cd76] w-full text-center hover:bg-[#d0a651] text-[#1a0040] text-sm px-5 py-3 font-bold tracking-widest uppercase transition-colors"
               onClick={() => router.push("/register")}
               style={{ fontFamily: "var(--font-montserrat)" }}
             >
