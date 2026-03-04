@@ -12,6 +12,7 @@ import { ComicText } from "@/components/ui/comic-text";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { Confetti, type ConfettiRef } from "@/components/ui/confetti";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const LS_KEY = "sahithyotsav_registration";
 
@@ -456,9 +457,14 @@ function RegisterPageContent() {
                             {isEditMode ? "Updating..." : "Submitting..."}
                           </div>
                         ) : (
-                          <button type="submit" className="btn-gold w-full">
+                          <HoverBorderGradient
+                            containerClassName="w-full rounded-full"
+                            as="button"
+                            className="w-full bg-[#f1cd76] hover:bg-[#d0a651] text-[#1a0040] text-sm px-8 py-3.5 font-bold tracking-[0.15em] uppercase transition-colors"
+                            style={{ fontFamily: "var(--font-display)" }}
+                          >
                             {isEditMode ? "Update Registration" : "Submit Registration"}
-                          </button>
+                          </HoverBorderGradient>
                         )}
                         {isEditMode && (
                           <button type="button" onClick={handleCancelEdit}
