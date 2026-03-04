@@ -52,7 +52,7 @@ export default function RootLayout({
       <body className="antialiased min-h-screen flex flex-col font-sans bg-white text-[#1a0040]">
         <ScrollProgress className="h-[3px] bg-gradient-to-r from-[#f1cd76] via-[#d0a651] to-[#cbb386]" />
         <Navbar />
-        <main className="flex-grow pt-16">
+        <main className="flex-grow">
           {children}
         </main>
         <Footer />

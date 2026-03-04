@@ -8,45 +8,18 @@ import { motion } from "framer-motion";
 import Container from "./Container";
 import { ComicText } from "@/components/ui/comic-text";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-
-const heroStats = [
-  { icon: Calendar, label: "Days", value: "2" },
-  { icon: Trophy, label: "Events", value: "19" },
-  { icon: Users, label: "Competitions", value: "6" },
-];
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 export default function Hero() {
   const router = useRouter();
 
   return (
-    <section className="relative pt-24 pb-36 bg-[#1e0050] text-white flex flex-col justify-center overflow-hidden">
-      {/* ===== LAYERED BACKGROUND GRADIENTS ===== */}
+    <section className="relative pt-24 pb-36 bg-[#2d006b] text-white flex flex-col justify-center overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 100% 80% at 50% -10%, #4a009e 0%, #2d006b 40%, #1a003d 100%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 55%, rgba(203,179,134,0.09) 0%, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 40% 70% at -5% 50%, rgba(100,0,180,0.25) 0%, transparent 60%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 40% 70% at 105% 50%, rgba(100,0,180,0.18) 0%, transparent 60%)",
+            "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(80,0,160,0.3) 0%, transparent 70%)",
         }}
       />
 
@@ -169,6 +142,23 @@ export default function Hero() {
           A Celebration of Literature
         </motion.p>
 
+        {/* Hero Character */}
+        <motion.div
+           initial={{ opacity: 0, scale: 0.9 }}
+           animate={{ opacity: 1, scale: 1 }}
+           transition={{ delay: 0.4, duration: 0.6 }}
+           className="w-full max-w-lg mx-auto mb-8"
+        >
+          <Image
+            src="/hero-happy.svg"
+            alt="Hero Element"
+            width={400}
+            height={300}
+            className="w-full h-auto drop-shadow-[0_10px_30px_rgba(209,166,81,0.2)]"
+            priority
+          />
+        </motion.div>
+
         {/* Location */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -180,30 +170,6 @@ export default function Hero() {
           <span>CVR College Of Engineering</span>
         </motion.div>
 
-        {/* Quick stats row */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="flex flex-wrap justify-center gap-8 sm:gap-12 mb-8"
-        >
-          {heroStats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center">
-              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mb-1.5">
-                <stat.icon size={20} className="text-[#f1cd76]" />
-              </div>
-              <span
-                className="text-xl font-black text-white"
-                style={{ fontFamily: "var(--font-montserrat)" }}
-              >
-                {stat.value}
-              </span>
-              <span className="text-[10px] text-white/50 uppercase tracking-wider font-semibold">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
@@ -212,13 +178,15 @@ export default function Hero() {
           transition={{ delay: 0.6, duration: 0.6 }}
           className="flex flex-wrap justify-center items-center gap-4"
         >
-          <Link
-            href="/register"
-            className="btn-gold text-sm px-8 py-4"
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="bg-[#2d006b] hover:bg-[#1a003d] text-[#f1cd76] text-sm px-8 py-3.5 font-bold tracking-[0.15em] uppercase transition-colors"
+            onClick={() => router.push("/register")}
             style={{ fontFamily: "var(--font-display)" }}
           >
             Register Now
-          </Link>
+          </HoverBorderGradient>
           <InteractiveHoverButton
             onClick={() => router.push("/schedule")}
             className="bg-transparent border-white/60 text-white hover:bg-white/10 px-8 py-3 text-sm font-bold tracking-widest uppercase [&_div.bg-primary]:bg-[#f1cd76] [&_div.text-primary-foreground]:text-[#2d006b]"
