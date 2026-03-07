@@ -14,7 +14,7 @@ export default function Hero() {
   const router = useRouter();
 
   return (
-    <section className="relative pt-24 pb-36 bg-[#2d006b] text-white flex flex-col justify-center overflow-hidden">
+    <section className="relative pt-24 pb-16 bg-[#2d006b] text-white flex flex-col justify-center overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -120,7 +120,7 @@ export default function Hero() {
                 letterSpacing: "0.04em",
               }}
             >
-              A Celebration of Literature
+              A Celebration of Literature and Public Speaking
             </motion.p>
 
             {/* Location */}
@@ -181,20 +181,7 @@ export default function Hero() {
         </div>
       </Container>
 
-      {/* Wave separator */}
-      <div className="wave-bottom-white">
-        <svg
-          viewBox="0 0 1440 80"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          className="w-full h-[60px] md:h-[80px]"
-        >
-          <path
-            d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"
-            fill="#f5f5f5"
-          />
-        </svg>
-      </div>
+
     </section>
   );
 }
