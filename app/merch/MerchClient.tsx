@@ -123,6 +123,7 @@ export default function MerchClient() {
               fontSize={4.5}
               className="z-10"
               style={{
+                fontSize: "clamp(2.5rem, 8vw, 4.5rem)",
                 backgroundColor: "#f1cd76",
                 backgroundImage:
                   "radial-gradient(circle at 2px 2px, #d0a651 1px, transparent 0)",
@@ -351,7 +352,7 @@ export default function MerchClient() {
                           </p>
                           <div className="flex flex-col sm:flex-row gap-6 mt-2">
                             {/* QR code */}
-                            <div className="w-full sm:w-[160px] shrink-0 aspect-square rounded-xl bg-[#faf9f7] border border-[#2d006b]/10 flex items-center justify-center p-3">
+                            <div className="max-w-[200px] sm:max-w-none w-full sm:w-[160px] mx-auto sm:mx-0 shrink-0 aspect-square rounded-xl bg-[#faf9f7] border border-[#2d006b]/10 flex items-center justify-center p-3">
                               <div className="text-center w-full">
                                 <div className="relative w-full aspect-square mx-auto bg-white rounded-lg mb-2 overflow-hidden border border-[#9b9b9b]/20">
                                   <Image src="/qr.png" alt="QR Code" fill className="object-cover" />
@@ -359,6 +360,7 @@ export default function MerchClient() {
                                 <span className="text-[10px] text-[#6b5f8a]">Scan to pay ₹200</span>
                               </div>
                             </div>
+
                             
                             {/* UTR */}
                             <div className="flex flex-col justify-center flex-grow w-full">
@@ -405,7 +407,7 @@ export default function MerchClient() {
                     className="flex flex-col w-full"
                   >
                     <h2 className="text-4xl md:text-5xl font-black text-[#1a0040] heading-display tracking-tight leading-tight">
-                      Exclusive Customized <br />
+                      Exclusive Customized <br className="hidden sm:block" />
                       <span className="text-[#2d006b]">Merchandise</span>
                     </h2>
 
