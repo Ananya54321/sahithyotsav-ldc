@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Scale, PenTool, Mic2, HelpCircle, GraduationCap, Wand2,
+  Scale, PenTool, Mic2, HelpCircle, GraduationCap, Wand2, BookOpen, Brain
 } from "lucide-react";
 import Container from "./Container";
 import { DotPattern } from "@/components/ui/dot-pattern";
@@ -36,6 +36,12 @@ const highlights = [
     gradient: "linear-gradient(135deg, #3d1080 0%, #a78bfa 100%)",
   },
   {
+    title: "Workshop – Emotional Intelligence in the Time of Artificial Intelligence",
+    description: "Gain insights into managing emotions and maintaining human connection in an increasingly AI-driven world.",
+    icon: Brain,
+    gradient: "linear-gradient(135deg, #3d1080 0%, #a78bfa 100%)",
+  },
+  {
     title: "Alumni Talk",
     description: "Gain insights from distinguished alumni who have made their mark in the literary and professional world.",
     icon: GraduationCap,
@@ -46,6 +52,12 @@ const highlights = [
     description: "Step into the wizarding world. Deliver iconic speeches from the beloved series with passion and flair.",
     icon: Wand2,
     gradient: "linear-gradient(135deg, #2d006b 0%, #c084fc 100%)",
+  },
+  {
+    title: "Book Fair Stall",
+    description: "Dive into a curated collection of literature, featuring works from renowned authors and fresh voices gathered just for Sahithyotsav.",
+    icon: BookOpen,
+    gradient: "linear-gradient(135deg, #0f172a 0%, #334155 100%)",
   },
 ];
 
@@ -202,7 +214,7 @@ export default function Highlights() {
                       textOrientation: isActive ? undefined : "mixed",
                       transform: isActive ? undefined : "rotate(180deg)",
                       color: isActive ? "white" : "rgba(255,255,255,0.7)",
-                      whiteSpace: "nowrap",
+                      whiteSpace: isActive ? "normal" : "nowrap",
                     }}
                   >
                     {item.title}

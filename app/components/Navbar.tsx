@@ -43,7 +43,7 @@ export default function Navbar() {
         className="text-white font-black text-lg tracking-tight hidden sm:inline"
         style={{ fontFamily: "var(--font-montserrat)" }}
       >
-        SAHITHYOTSAV
+        SAHITHYOTSAV 2k26
       </span>
       <span className="text-white/30 hidden sm:inline">|</span>
       <Image

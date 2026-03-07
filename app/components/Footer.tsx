@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Twitter, Mail, Phone } from "lucide-react";
+import { Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import Container from "./Container";
 
 const quickLinks = [
@@ -37,7 +37,7 @@ export default function Footer() {
                 className="text-white font-black text-base tracking-tight"
                 style={{ fontFamily: "var(--font-montserrat)" }}
               >
-                SAHITHYOTSAV
+                SAHITHYOTSAV 2k26
               </span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-[220px]">
@@ -77,21 +77,25 @@ export default function Footer() {
             </h4>
             <div className="flex items-center gap-3 mb-4">
               <a
-                href="#"
+                href="https://www.instagram.com/cvr.ldc"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-[#cbb386] hover:text-[#2d006b] transition-all duration-300"
                 aria-label="Instagram"
               >
                 <Instagram size={16} />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/ldccvr"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-[#cbb386] hover:text-[#2d006b] transition-all duration-300"
-                aria-label="Twitter"
+                aria-label="LinkedIn"
               >
-                <Twitter size={16} />
+                <Linkedin size={16} />
               </a>
               <a
-                href="mailto:sahithyotsav@cvr.ac.in"
+                href="mailto:ldc.cvr@gmail.com"
                 className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-[#cbb386] hover:text-[#2d006b] transition-all duration-300"
                 aria-label="Email"
               >
@@ -100,18 +104,18 @@ export default function Footer() {
             </div>
             <div className="space-y-2 mt-4">
               <a
-                href="tel:+919876543210"
+                href="tel:+919346251983"
                 className="flex items-center gap-2 text-white/50 text-xs hover:text-[#cbb386] transition-colors"
               >
                 <Phone size={12} className="shrink-0" />
-                +91 98765 43210
+                +91 93462 51983
               </a>
               <a
-                href="mailto:sahithyotsav@cvr.ac.in"
+                href="mailto:ldc.cvr@gmail.com"
                 className="flex items-center gap-2 text-white/50 text-xs hover:text-[#cbb386] transition-colors"
               >
                 <Mail size={12} className="shrink-0" />
-                sahithyotsav@cvr.ac.in
+                ldc.cvr@gmail.com
               </a>
             </div>
           </div>
