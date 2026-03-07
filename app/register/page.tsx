@@ -313,22 +313,37 @@ function RegisterPageContent() {
                 <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6">
                   {/* Left column: poster + payment */}
                   <div className="space-y-4">
-                    {/* Event poster placeholder */}
+                    {/* Event poster */}
                     <div
-                      className="aspect-square w-full rounded-2xl flex items-center justify-center relative overflow-hidden"
+                      className="aspect-square w-full rounded-2xl flex flex-col justify-end relative overflow-hidden group p-6"
                       style={{ background: selectedEventConfig?.gradient ?? "linear-gradient(135deg, #2d006b, #7c3aed)" }}
                     >
-                      <div className="absolute inset-0 bg-black/20" />
-                      <div className="relative z-10 text-center px-6">
+                      {selectedEventConfig?.image && (
+                        <div className="absolute inset-0 z-0 pointer-events-none">
+                          <Image src={selectedEventConfig.image} alt={formData.selectedEvent} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                        </div>
+                      )}
+                      
+                      {/* Gradient overlay for text readability */}
+                      <div 
+                        className="absolute inset-0 z-10 pointer-events-none"
+                        style={{ background: selectedEventConfig?.image ? "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 100%)" : "rgba(0,0,0,0.2)" }}
+                      />
+
+                      <div className="relative z-20 text-center">
                         <span
-                          className="text-white/60 text-[10px] uppercase tracking-[0.2em] font-bold"
+                          className="text-white/80 text-[10px] uppercase tracking-[0.2em] font-bold"
                           style={{ fontFamily: "var(--font-display)" }}
                         >
                           Event Poster
                         </span>
                         <p
-                          className="text-white font-black text-xl mt-2"
-                          style={{ fontFamily: "'Bangers', 'Comic Sans MS', sans-serif" }}
+                          className="text-white font-black text-2xl mt-2 leading-tight"
+                          style={{
+                            fontFamily: "'Bangers', 'Comic Sans MS', sans-serif",
+                            letterSpacing: "0.05em",
+                            textShadow: "0 2px 8px rgba(0,0,0,0.9)"
+                          }}
                         >
                           {formData.selectedEvent}
                         </p>

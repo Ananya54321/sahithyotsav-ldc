@@ -36,16 +36,16 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
       <div
-        className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center"
+        className="w-12 h-12 sm:w-20 sm:h-20 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center"
       >
         <span
-          className="text-2xl sm:text-3xl font-black text-[#f1cd76]"
+          className="text-xl sm:text-3xl font-black text-[#f1cd76]"
           style={{ fontFamily: "var(--font-montserrat)" }}
         >
           {String(value).padStart(2, "0")}
         </span>
       </div>
-      <span className="text-[10px] text-white/50 uppercase tracking-wider font-semibold mt-2">
+      <span className="text-[9px] sm:text-[10px] text-white/50 uppercase tracking-wider font-semibold mt-1 sm:mt-2">
         {label}
       </span>
     </div>
@@ -116,13 +116,13 @@ export default function SchedulePage() {
             </p>
 
             {/* Countdown */}
-            <div className="flex items-center gap-3 sm:gap-5">
+            <div className="flex items-center gap-2 sm:gap-5">
               <CountdownUnit value={countdown.days} label="Days" />
-              <span className="text-2xl font-black text-white/30 mt-[-20px]">:</span>
+              <span className="text-xl sm:text-2xl font-black text-white/30 mt-[-14px] sm:mt-[-20px]">:</span>
               <CountdownUnit value={countdown.hours} label="Hours" />
-              <span className="text-2xl font-black text-white/30 mt-[-20px]">:</span>
+              <span className="text-xl sm:text-2xl font-black text-white/30 mt-[-14px] sm:mt-[-20px]">:</span>
               <CountdownUnit value={countdown.minutes} label="Min" />
-              <span className="text-2xl font-black text-white/30 mt-[-20px]">:</span>
+              <span className="text-xl sm:text-2xl font-black text-white/30 mt-[-14px] sm:mt-[-20px]">:</span>
               <CountdownUnit value={countdown.seconds} label="Sec" />
             </div>
           </motion.div>
