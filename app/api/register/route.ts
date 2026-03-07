@@ -6,11 +6,13 @@ const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID!;
 // Canonical ordered list of events — must match eventsList in schedule.ts
 const EVENTS = [
   "Youth Parliament",
-  "Writers' Hunt",
-  "Kaavya Manch",
-  "Quiz Competition",
+  "Book Fair Stall",
+  "Workshop – Engaging Public Speaking",
+  "Writers' Hunt: The Literary Quest Competition",
+  "Workshop – Emotional Intelligence in the Time of Artificial Intelligence",
   "Alumni Talk",
-  "Harry Potter Declamation",
+  "Kaavya Manch – Open Mic Poetry",
+  "Declamation on Harry Potter Series Competition"
 ];
 
 // Sheet columns: Timestamp | Full Name | Email | Phone | College | Year | <one col per event>

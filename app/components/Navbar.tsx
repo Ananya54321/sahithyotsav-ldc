@@ -53,24 +53,35 @@ export default function Navbar() {
         height={28}
         className="rounded-full hidden sm:block"
       />
+      <span
+        className="text-white font-black text-lg uppercase tracking-tight hidden sm:block group-data-[shrunk=true]/nav:hidden"
+        style={{ fontFamily: "var(--font-montserrat)" }}
+      >
+        Literary & Debate Club
+      </span>
+      <span
+        className="text-white font-black text-lg tracking-tight hidden group-data-[shrunk=true]/nav:block"
+        style={{ fontFamily: "var(--font-montserrat)" }}
+      >
+        LDC
+      </span>
     </Link>
   );
 
   const MobileLogo = () => (
     <Link href="/" className="flex items-center gap-2.5 group">
       <Image
-        src="/sahithyotsav-logo.png"
-        alt="Sahithyotsav"
+        src="/ldc-logo.png"
+        alt="Literary & Debate Club"
         width={36}
         height={36}
         className="rounded-full"
-        unoptimized
       />
       <span
-        className="text-white font-black text-lg tracking-tight"
+        className="text-white font-black uppercase text-lg tracking-tight"
         style={{ fontFamily: "var(--font-montserrat)" }}
       >
-        SAHITHYOTSAV
+        Literary & Debate Club
       </span>
     </Link>
   );

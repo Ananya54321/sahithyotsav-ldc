@@ -26,6 +26,7 @@ interface FormData {
   yearOfStudy: string;
   branch: string;
   selectedEvent: string;
+  utrNumber: string;
 }
 
 interface FormErrors {
@@ -37,13 +38,13 @@ interface FormErrors {
   yearOfStudy?: string;
   branch?: string;
   general?: string;
-  paymentScreenshot?: string;
+  utrNumber?: string;
 }
 
 const yearOptions = ["1st Year", "2nd Year", "3rd Year", "4th Year", "Post Graduate", "Other"];
 
 const defaultFormData: FormData = {
-  fullName: "", email: "", phone: "", college: "", rollNumber: "", yearOfStudy: "", branch: "", selectedEvent: "",
+  fullName: "", email: "", phone: "", college: "", rollNumber: "", yearOfStudy: "", branch: "", selectedEvent: "", utrNumber: "",
 };
 
 const inputClass =
@@ -62,14 +63,11 @@ export default function RegisterPage() {
 function RegisterPageContent() {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState<FormData>(defaultFormData);
-  const [paymentFile, setPaymentFile] = useState<File | null>(null);
-  const [paymentPreview, setPaymentPreview] = useState<string | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [successAction, setSuccessAction] = useState<"created" | "updated">("created");
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     try {
@@ -99,7 +97,7 @@ function RegisterPageContent() {
     if (!formData.rollNumber.trim()) e.rollNumber = "Required";
     if (!formData.yearOfStudy) e.yearOfStudy = "Required";
     if (!formData.branch.trim()) e.branch = "Required";
-    if (requiresPayment && !paymentFile && !isEditMode) e.paymentScreenshot = "Payment screenshot is required";
+    if (requiresPayment && !formData.utrNumber.trim()) e.utrNumber = "Required";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -131,8 +129,6 @@ function RegisterPageContent() {
   const handleCancelEdit = () => {
     localStorage.removeItem(LS_KEY);
     setFormData(defaultFormData);
-    setPaymentFile(null);
-    setPaymentPreview(null);
     setIsEditMode(false);
     setErrors({});
   };
@@ -141,22 +137,6 @@ function RegisterPageContent() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) setErrors((prev) => ({ ...prev, [name]: undefined }));
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    if (!file.type.startsWith("image/")) { setErrors((p) => ({ ...p, paymentScreenshot: "Upload an image file" })); return; }
-    if (file.size > 5 * 1024 * 1024) { setErrors((p) => ({ ...p, paymentScreenshot: "Max 5 MB" })); return; }
-    setPaymentFile(file);
-    setPaymentPreview(URL.createObjectURL(file));
-    setErrors((p) => ({ ...p, paymentScreenshot: undefined }));
-  };
-
-  const removeFile = () => {
-    setPaymentFile(null);
-    setPaymentPreview(null);
-    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const confettiRef = useRef<ConfettiRef>(null);
@@ -290,7 +270,7 @@ function RegisterPageContent() {
                 <div className="flex items-center justify-between mb-4">
                   <button
                     type="button"
-                    onClick={() => { setFormData((p) => ({ ...p, selectedEvent: "" })); setErrors({}); setPaymentFile(null); setPaymentPreview(null); }}
+                    onClick={() => { setFormData((p) => ({ ...p, selectedEvent: "" })); setErrors({}); }}
                     className="flex items-center gap-2 text-sm text-[#2d006b] font-bold hover:text-[#4a009e] transition-colors cursor-pointer"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
@@ -398,7 +378,7 @@ function RegisterPageContent() {
                             Roll No. <span className="text-[#d0a651]">*</span>
                           </label>
                           <input type="text" id="rollNumber" name="rollNumber" value={formData.rollNumber} onChange={handleInputChange}
-                            className={`${inputClass} ${errors.rollNumber ? "border-red-400" : ""}`} placeholder="21B81A0501" />
+                            className={`${inputClass} ${errors.rollNumber ? "border-red-400" : ""}`} placeholder="22B81A0501" />
                           {errors.rollNumber && <p className="text-red-500 text-[10px] mt-0.5">{errors.rollNumber}</p>}
                         </div>
                         <div>
@@ -427,37 +407,30 @@ function RegisterPageContent() {
                       {requiresPayment && (
                         <div>
                           <p className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
-                            Payment — ₹{selectedEventConfig!.fee} (Scan & Upload) <span className="text-[#d0a651]">*</span>
+                            Payment — ₹{selectedEventConfig!.fee} <span className="text-[#d0a651]">*</span>
                           </p>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {/* QR placeholder */}
-                            <div className="aspect-square w-full max-w-[180px] rounded-xl bg-white border border-[#2d006b]/10 flex items-center justify-center">
-                              <div className="text-center">
-                                <div className="w-28 h-28 mx-auto bg-[#f5f5f5] rounded-lg flex items-center justify-center mb-2">
-                                  <span className="text-[#9b9b9b] text-xs">QR Code</span>
+                          <div className="flex flex-col sm:flex-row gap-6 mt-2">
+                            {/* QR code */}
+                            <div className="w-full sm:w-[180px] shrink-0 aspect-square rounded-xl bg-white border border-[#2d006b]/10 flex items-center justify-center p-3">
+                              <div className="text-center w-full">
+                                <div className="relative w-full aspect-square mx-auto bg-[#f5f5f5] rounded-lg mb-2 overflow-hidden border border-[#9b9b9b]/20">
+                                  <Image src="/qr.png" alt="QR Code" fill className="object-cover" />
                                 </div>
                                 <span className="text-[10px] text-[#6b5f8a]">Scan to pay ₹{selectedEventConfig!.fee}</span>
                               </div>
                             </div>
                             
-                            {/* Upload */}
-                            <div className="flex flex-col max-h-[180px]">
-                              {paymentPreview ? (
-                                <div className="relative inline-block w-fit h-full">
-                                  <img src={paymentPreview} alt="Payment" className="max-w-[180px] h-full rounded-lg border border-[#2d006b]/15 object-cover" />
-                                  <button type="button" onClick={removeFile} className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer">
-                                    <X size={10} />
-                                  </button>
-                                </div>
-                              ) : (
-                                <label className="flex flex-col items-center justify-center w-full h-full border-2 border-dashed border-[#2d006b]/20 rounded-lg cursor-pointer hover:border-[#2d006b]/40 transition-all bg-[#faf9f7] min-h-[140px]">
-                                  <Upload className="w-5 h-5 text-[#6b5f8a] mb-1" />
-                                  <span className="text-xs text-[#6b5f8a]">Click to upload</span>
-                                  <span className="text-[10px] text-[#9b9b9b]">PNG, JPG up to 5 MB</span>
-                                  <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
-                                </label>
-                              )}
-                              {errors.paymentScreenshot && <p className="text-red-500 text-[10px] mt-1">{errors.paymentScreenshot}</p>}
+                            {/* UTR */}
+                            <div className="flex flex-col justify-center grow w-full">
+                              <label htmlFor="utrNumber" className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
+                                UTR / Reference Number <span className="text-[#d0a651]">*</span>
+                              </label>
+                              <input type="text" id="utrNumber" name="utrNumber" value={formData.utrNumber} onChange={handleInputChange}
+                                className={`${inputClass} ${errors.utrNumber ? "border-red-400" : ""}`} placeholder="12-digit UTR number" />
+                              <p className="text-[10px] text-[#6b5f8a] mt-1.5 leading-tight">
+                                Unique Transaction Reference (UTR) is a 12-digit number found in your payment app (GPay, PhonePe, etc.) after a successful transaction.
+                              </p>
+                              {errors.utrNumber && <p className="text-red-500 text-[10px] mt-1">{errors.utrNumber}</p>}
                             </div>
                           </div>
                         </div>

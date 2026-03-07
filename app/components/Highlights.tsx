@@ -18,20 +18,20 @@ const highlights = [
     gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)",
   },
   {
-    title: "Writers' Hunt",
+    title: "Writers' Hunt: The Literary Quest Competition",
     description: "A treasure hunt for the literary mind. Solve clues, decode references, and race against time.",
     icon: PenTool,
     gradient: "linear-gradient(135deg, #1a0040 0%, #5a00c8 100%)",
   },
   {
-    title: "Kaavya Manch",
+    title: "Kaavya Manch – Open Mic Poetry",
     description: "A stage for poets to share their verses. Express emotions through the beauty of Hindi and English poetry.",
     icon: Mic2,
     gradient: "linear-gradient(135deg, #2d006b 0%, #8b5cf6 100%)",
   },
   {
-    title: "Quiz Competition",
-    description: "Test your knowledge of literature, history, and culture in this fast-paced quiz showdown.",
+    title: "Workshop – Engaging Public Speaking",
+    description: "Learn the art of articulation and captivate audiences in this hands-on public speaking workshop.",
     icon: HelpCircle,
     gradient: "linear-gradient(135deg, #3d1080 0%, #a78bfa 100%)",
   },
@@ -42,7 +42,7 @@ const highlights = [
     gradient: "linear-gradient(135deg, #1a003d 0%, #6d28d9 100%)",
   },
   {
-    title: "Harry Potter Declamation",
+    title: "Declamation on Harry Potter Series Competition",
     description: "Step into the wizarding world. Deliver iconic speeches from the beloved series with passion and flair.",
     icon: Wand2,
     gradient: "linear-gradient(135deg, #2d006b 0%, #c084fc 100%)",

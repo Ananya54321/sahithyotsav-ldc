@@ -1,15 +1,15 @@
 import Hero from "./components/Hero";
 import Highlights from "./components/Highlights";
 import LiveFeed from "./components/LiveFeed";
-import Coordinators from "./components/Coordinators";
+import MerchShowcase from "./components/MerchShowcase";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Highlights />
+      <MerchShowcase />
       <LiveFeed />
-      <Coordinators />
+      <Highlights />
     </>
   );
 }

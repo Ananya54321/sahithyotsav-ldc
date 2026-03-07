@@ -65,13 +65,7 @@ export default function ScheduleSection({
 
   useOutsideClick(modalRef, () => setActive(null));
 
-  const fnEvents = events.filter((e) => e.session === "FN");
-  const anEvents = events.filter(
-    (e) =>
-      e.session === "AN" ||
-      e.session === "Online" ||
-      e.session === "Full Day"
-  );
+  // Events no longer split by session
 
   return (
     <motion.section
@@ -204,18 +198,8 @@ export default function ScheduleSection({
         </div>
       </div>
 
-      {/* ── Event groups ── */}
-      {fnEvents.length > 0 && (
-        <SessionGroup
-          events={fnEvents}
-          type="FN"
-          onSelect={setActive}
-          className="mb-10"
-        />
-      )}
-      {anEvents.length > 0 && (
-        <SessionGroup events={anEvents} type="AN" onSelect={setActive} />
-      )}
+      {/* ── All events ── */}
+      <EventList events={events} onSelect={setActive} />
     </motion.section>
   );
 }
@@ -224,40 +208,21 @@ export default function ScheduleSection({
    Session group — label + desktop table + mobile cards
    ──────────────────────────────────────────────── */
 
-function SessionGroup({
+function EventList({
   events,
-  type,
   onSelect,
   className = "",
 }: {
   events: ScheduleEvent[];
-  type: "FN" | "AN";
   onSelect: (e: ScheduleEvent) => void;
   className?: string;
 }) {
-  const isFN = type === "FN";
-
   return (
     <div className={className}>
-      {/* Section divider label */}
-      <div className="flex items-center gap-3 mb-5">
-        <div
-          className={`h-px flex-1 bg-linear-to-r ${isFN ? "from-[#2d006b]/20" : "from-[#cbb386]/30"} to-transparent`}
-        />
-        <span
-          className={`inline-flex items-center gap-2 ${isFN ? "badge-purple" : "badge-gold"} text-xs`}
-        >
-          {isFN ? <Sun size={12} /> : <Sunset size={12} />}
-          {isFN ? "Forenoon Sessions" : "Afternoon Sessions"}
-        </span>
-        <div
-          className={`h-px flex-1 bg-linear-to-l ${isFN ? "from-[#2d006b]/20" : "from-[#cbb386]/30"} to-transparent`}
-        />
-      </div>
 
       {/* ── Desktop: table ── */}
       <div className="hidden md:block rounded-xl overflow-hidden border border-[#2d006b]/10 bg-white">
-        <div className="grid grid-cols-[160px_1fr_200px] gap-4 px-5 py-3 bg-[#2d006b]/4 border-b border-[#2d006b]/10 items-center">
+        <div className="grid grid-cols-[240px_1fr_200px] gap-4 px-5 py-3 bg-[#2d006b]/4 border-b border-[#2d006b]/10 items-center">
           <span className="text-[0.65rem] font-bold uppercase tracking-widest text-[#6b5f8a]">
             Time
           </span>
@@ -280,9 +245,9 @@ function SessionGroup({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.04, duration: 0.3 }}
-              className="grid grid-cols-[160px_1fr_200px] gap-4 px-5 py-4 items-center cursor-pointer border-b border-[#2d006b]/5 last:border-b-0 hover:bg-[#2d006b]/3 transition-colors group"
+              className="grid grid-cols-[240px_1fr_200px] gap-4 px-5 py-4 items-center cursor-pointer border-b border-[#2d006b]/5 last:border-b-0 hover:bg-[#2d006b]/3 transition-colors group"
             >
-              <span className="text-sm text-[#6b5f8a] font-medium tabular-nums whitespace-nowrap">
+              <span className="text-sm text-[#6b5f8a] font-medium tabular-nums pr-2">
                 {event.time}
               </span>
               <h3
