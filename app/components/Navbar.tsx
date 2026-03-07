@@ -70,20 +70,29 @@ export default function Navbar() {
   );
 
   const MobileLogo = () => (
-    <Link href="/" className="flex items-center gap-2.5 group">
+    <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+      <Image
+        src="/sahithyotsav-logo.png"
+        alt="Sahithyotsav"
+        width={32}
+        height={32}
+        className="rounded-full shrink-0"
+        unoptimized
+      />
+      <span
+        className="text-white font-black uppercase sm:text-lg text-sm tracking-tight truncate"
+        style={{ fontFamily: "var(--font-montserrat)" }}
+      >
+        Sahithyotsav 2k26
+      </span>
+      <span className="text-white/30 shrink-0">|</span>
       <Image
         src="/ldc-logo.png"
         alt="Literary & Debate Club"
-        width={36}
-        height={36}
-        className="rounded-full"
+        width={24}
+        height={24}
+        className="rounded-full shrink-0"
       />
-      <span
-        className="text-white font-black uppercase text-lg tracking-tight"
-        style={{ fontFamily: "var(--font-montserrat)" }}
-      >
-        Literary & Debate Club
-      </span>
     </Link>
   );
 
@@ -123,7 +132,7 @@ export default function Navbar() {
             <HoverBorderGradient
               containerClassName="rounded-full w-full"
               as="button"
-              className="bg-[#f1cd76] w-full text-center hover:bg-[#d0a651] text-[#1a0040] text-sm px-5 py-3 font-bold tracking-widest uppercase transition-colors"
+              className="bg-[#f1cd76] w-full text-center hover:bg-[#d0a651] text-primary-dark text-sm px-5 py-3 font-bold tracking-widest uppercase transition-colors"
               onClick={() => router.push("/register")}
               style={{ fontFamily: "var(--font-montserrat)" }}
             >

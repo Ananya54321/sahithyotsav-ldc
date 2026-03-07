@@ -51,6 +51,7 @@ export default function MerchClient() {
     if (!formData.branch.trim()) e.branch = "Required";
     if (!formData.customName.trim()) e.customName = "Required";
     if (!formData.utrNumber.trim()) e.utrNumber = "Required";
+    else if (!/^\d{12}$/.test(formData.utrNumber.trim())) e.utrNumber = "Must be a 12-digit number";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -424,7 +425,7 @@ export default function MerchClient() {
                         Custom Name Engraving
                       </div>
                       <div className="flex items-center gap-3 text-gray-700 font-medium">
-                        <div className="w-8 h-8 rounded-full bg-[#2d006b]/10 flex items-center justify-center text-[#2d006b]">
+                        <div className="w-8 h-8 rounded-full bg-[#f1cd76]/20 flex items-center justify-center text-[#d0a651]">
                           <Check className="w-5 h-5" />
                         </div>
                         High-Grade Ceramic

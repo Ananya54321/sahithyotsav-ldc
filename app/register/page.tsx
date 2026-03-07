@@ -105,7 +105,10 @@ function RegisterPageContent() {
     if (!formData.rollNumber.trim()) e.rollNumber = "Required";
     if (!formData.yearOfStudy) e.yearOfStudy = "Required";
     if (!formData.branch.trim()) e.branch = "Required";
-    if (requiresPayment && !formData.utrNumber.trim()) e.utrNumber = "Required";
+    if (requiresPayment) {
+      if (!formData.utrNumber.trim()) e.utrNumber = "Required";
+      else if (!/^\d{12}$/.test(formData.utrNumber.trim())) e.utrNumber = "Must be a 12-digit number";
+    }
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -287,7 +290,7 @@ function RegisterPageContent() {
                   >
                     <div className="flex items-center justify-between">
                       <h3 className="text-sm font-bold text-[#1a0040] group-hover:text-[#2d006b] transition-colors" style={{ fontFamily: "var(--font-display)" }}>
-                        Merchandise - Mugs
+                        Merchandise - Customized Mugs
                       </h3>
                       <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#2d006b]/10 text-[#2d006b]" style={{ fontFamily: "var(--font-display)" }}>
                         <span className="flex items-center gap-0.5"><IndianRupee size={10} />200</span>

@@ -43,6 +43,47 @@ async function getAllRows(sheets: ReturnType<typeof google.sheets>) {
   }
 }
 
+async function isUtrUsedAcrossSheets(sheets: ReturnType<typeof google.sheets>, utrNumber: string): Promise<boolean> {
+  if (!utrNumber) return false;
+  
+  try {
+    const allSheetsRes = await sheets.spreadsheets.get({
+      spreadsheetId: SPREADSHEET_ID,
+    });
+    const sheetNames = allSheetsRes.data.sheets?.map((s) => s.properties?.title).filter(Boolean) as string[];
+
+    const ranges = sheetNames.map(name => `'${name}'!A:J`);
+    
+    if (ranges.length === 0) return false;
+
+    const batchRes = await sheets.spreadsheets.values.batchGet({
+      spreadsheetId: SPREADSHEET_ID,
+      ranges,
+    });
+    
+    const valueRanges = batchRes.data.valueRanges || [];
+    for (const vr of valueRanges) {
+      const rows = vr.values || [];
+      if (rows.length === 0) continue;
+      
+      const headers = rows[0] || [];
+      const utrColIndex = headers.findIndex((h) => h && h.toString().toLowerCase().includes("utr"));
+      
+      if (utrColIndex !== -1) {
+        for (let i = 1; i < rows.length; i++) {
+          const rowUtr = rows[i][utrColIndex];
+          if (rowUtr && rowUtr.toString().trim() === utrNumber.trim()) {
+            return true;
+          }
+        }
+      }
+    }
+  } catch (e) {
+    console.error("Error fetching UTRs across sheets:", e);
+  }
+  return false;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -78,6 +119,16 @@ export async function POST(req: NextRequest) {
           );
         }
         throw err;
+      }
+    }
+
+    if (utrNumber) {
+      const isUsed = await isUtrUsedAcrossSheets(sheets, utrNumber);
+      if (isUsed) {
+        return NextResponse.json(
+          { error: "This UTR number has already been used. Please provide a valid, unique 12-digit UTR." },
+          { status: 400 }
+        );
       }
     }
 
