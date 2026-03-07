@@ -404,7 +404,7 @@ export default function MerchClient() {
                     className="flex flex-col w-full"
                   >
                     <h2 className="text-4xl md:text-5xl font-black text-[#1a0040] heading-display tracking-tight leading-tight">
-                      Exclusive Customised <br />
+                      Exclusive Customized <br />
                       <span className="text-[#2d006b]">Merchandise</span>
                     </h2>
 

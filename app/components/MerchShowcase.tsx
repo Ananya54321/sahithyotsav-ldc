@@ -96,7 +96,7 @@ export default function MerchShowcase() {
             </div>
             
             <h3 className="text-2xl font-black text-primary-dark mb-3" style={{ fontFamily: "var(--font-montserrat)" }}>
-              Exclusive Customised Merchandise
+              Exclusive Customized Merchandise
             </h3>
             <p className="text-[#4a4a4a] mb-6">
               Custom Sahithyotsav Mugs with your Name. Grab yours today for just ₹200.

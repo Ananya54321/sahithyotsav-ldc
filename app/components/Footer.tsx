@@ -68,12 +68,12 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div id="contact">
             <h4
               className="text-xs font-black uppercase tracking-[0.15em] text-[#cbb386] mb-5"
               style={{ fontFamily: "var(--font-montserrat)" }}
             >
-              Connect
+              Contact Us
             </h4>
             <div className="flex items-center gap-3 mb-4">
               <a

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Scale, PenTool, Mic2, HelpCircle, GraduationCap, Wand2, BookOpen, Brain
@@ -16,48 +17,49 @@ const highlights = [
     description: "Experience the thrill of parliamentary debate. Argue, persuade, and lead in this simulation of democratic discourse.",
     icon: Scale,
     gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)",
+    image: "/events/youth_parliament.png"
   },
   {
     title: "Writers' Hunt: The Literary Quest Competition",
     description: "A treasure hunt for the literary mind. Solve clues, decode references, and race against time.",
     icon: PenTool,
     gradient: "linear-gradient(135deg, #1a0040 0%, #5a00c8 100%)",
+    image: "/events/writers_hunt.png"
   },
   {
     title: "Kaavya Manch – Open Mic Poetry",
     description: "A stage for poets to share their verses. Express emotions through the beauty of Hindi and English poetry.",
     icon: Mic2,
     gradient: "linear-gradient(135deg, #2d006b 0%, #8b5cf6 100%)",
+    image: "/events/open_mic.png"
   },
   {
     title: "Workshop – Engaging Public Speaking",
     description: "Learn the art of articulation and captivate audiences in this hands-on public speaking workshop.",
     icon: HelpCircle,
     gradient: "linear-gradient(135deg, #3d1080 0%, #a78bfa 100%)",
+    image: "/events/public_speaking.png"
   },
   {
     title: "Workshop – Emotional Intelligence in the Time of Artificial Intelligence",
     description: "Gain insights into managing emotions and maintaining human connection in an increasingly AI-driven world.",
     icon: Brain,
     gradient: "linear-gradient(135deg, #3d1080 0%, #a78bfa 100%)",
+    image: "/events/emotional_intelligence.png"
   },
   {
     title: "Alumni Talk",
     description: "Gain insights from distinguished alumni who have made their mark in the literary and professional world.",
     icon: GraduationCap,
     gradient: "linear-gradient(135deg, #1a003d 0%, #6d28d9 100%)",
+    image: "/events/alumni_talk.png"
   },
   {
     title: "Declamation on Harry Potter Series Competition",
     description: "Step into the wizarding world. Deliver iconic speeches from the beloved series with passion and flair.",
     icon: Wand2,
     gradient: "linear-gradient(135deg, #2d006b 0%, #c084fc 100%)",
-  },
-  {
-    title: "Book Fair Stall",
-    description: "Dive into a curated collection of literature, featuring works from renowned authors and fresh voices gathered just for Sahithyotsav.",
-    icon: BookOpen,
-    gradient: "linear-gradient(135deg, #0f172a 0%, #334155 100%)",
+    image: "/events/harry_potter.png"
   },
 ];
 
@@ -157,7 +159,7 @@ export default function Highlights() {
                 key={item.title}
                 className="relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
                 style={{
-                  background: item.gradient,
+                  background: isActive ? item.gradient : "#3b0764",
                   flex: isActive ? 5 : 1,
                   minHeight: isActive ? "280px" : "60px",
                 }}
@@ -165,60 +167,73 @@ export default function Highlights() {
                 onMouseEnter={() => handleHoverStart(index)}
                 onMouseLeave={handleHoverEnd}
               >
+                {/* Background image - visible when active */}
                 <div
-                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                  style={{ opacity: isActive ? 0.08 : 0.15 }}
+                  className="absolute inset-0 transition-opacity duration-700 pointer-events-none"
+                  style={{ opacity: isActive ? 1 : 0 }}
+                >
+                  {item.image && (
+                    <Image src={item.image} alt={item.title} fill className="object-cover" />
+                  )}
+                </div>
+
+                {/* Gradient overlay - strong at bottom for text readability */}
+                <div
+                  className="absolute inset-0 transition-all duration-700 z-10"
+                  style={{
+                    background: isActive
+                      ? "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.1) 100%)"
+                      : item.gradient,
+                  }}
+                />
+
+                {/* Icon - only shown when NOT active */}
+                <div
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
+                  style={{ opacity: isActive ? 0 : 0.25 }}
                 >
                   <Icon
                     className="text-white transition-all duration-500"
-                    style={{ width: isActive ? 200 : 48, height: isActive ? 200 : 48 }}
+                    style={{ width: 48, height: 48 }}
                     strokeWidth={0.5}
                   />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                <div className="relative z-20 h-full flex flex-col justify-end p-5 lg:p-6">
+                  {/* Icon badge - only shown when active */}
+                  {isActive && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                      className="w-10 h-10 rounded-full flex items-center justify-center mb-3"
+                      style={{
+                        background: "linear-gradient(135deg, #f1cd76, #d0a651)",
+                        boxShadow: "0 4px 14px rgba(209,166,81,0.4)",
+                      }}
+                    >
+                      <Icon className="w-4 h-4 text-[#2d006b]" />
+                    </motion.div>
+                  )}
 
-                <div className="relative h-full flex flex-col justify-end p-5 lg:p-6">
-                  <AnimatePresence mode="wait">
-                    {isActive && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        transition={{ duration: 0.35, delay: 0.15 }}
-                        className="mb-2"
-                      >
-                        <div
-                          className="w-11 h-11 rounded-full flex items-center justify-center mb-4"
-                          style={{
-                            background: "linear-gradient(135deg, #f1cd76, #d0a651)",
-                            boxShadow: "0 4px 14px rgba(209,166,81,0.4)",
-                          }}
-                        >
-                          <Icon className="w-5 h-5 text-[#2d006b]" />
-                        </div>
-                        <p className="text-white/80 text-sm leading-relaxed max-w-sm">
-                          {item.description}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  <div
-                    className="font-black uppercase tracking-wider transition-all duration-500"
+                  <motion.div
+                    animate={{ rotate: isActive ? 0 : -90 }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                    className="font-black uppercase tracking-wider origin-bottom-left"
                     style={{
                       fontFamily: "'Bangers', 'Comic Sans MS', sans-serif",
-                      fontSize: isActive ? "1.25rem" : "0.8rem",
-                      letterSpacing: isActive ? "0.08em" : "0.12em",
-                      writingMode: isActive ? undefined : "vertical-rl",
-                      textOrientation: isActive ? undefined : "mixed",
-                      transform: isActive ? undefined : "rotate(180deg)",
-                      color: isActive ? "white" : "rgba(255,255,255,0.7)",
+                      fontSize: isActive ? "1.1rem" : "0.75rem",
+                      letterSpacing: "0.08em",
+                      color: "white",
                       whiteSpace: isActive ? "normal" : "nowrap",
+                      maxWidth: isActive ? "100%" : undefined,
+                      textShadow: "0 2px 8px rgba(0,0,0,0.9)",
+                      lineHeight: 1.3,
                     }}
                   >
                     {item.title}
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             );
@@ -236,14 +251,16 @@ export default function Highlights() {
                 style={{ background: item.gradient }}
                 onClick={() => handleCardClick(item.title)}
               >
-                <div
-                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                  style={{ opacity: 0.1 }}
-                >
-                  <Icon className="text-white w-32 h-32" strokeWidth={0.5} />
+                {/* Background image */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {item.image && (
+                    <Image src={item.image} alt={item.title} fill className="object-cover" />
+                  )}
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="relative z-10">
+
+                {/* Strong bottom scrim for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/5 z-10" />
+                <div className="relative z-20">
                   <div
                     className="w-11 h-11 rounded-full flex items-center justify-center mb-4"
                     style={{
@@ -259,11 +276,12 @@ export default function Highlights() {
                       fontFamily: "'Bangers', 'Comic Sans MS', sans-serif",
                       fontSize: "1.25rem",
                       letterSpacing: "0.08em",
+                      textShadow: "0 2px 8px rgba(0,0,0,0.9)",
                     }}
                   >
                     {item.title}
                   </div>
-                  <p className="text-white/80 text-sm leading-relaxed">
+                  <p className="text-white text-sm leading-relaxed" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}>
                     {item.description}
                   </p>
                 </div>

@@ -22,7 +22,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Sahithyotsav 2k26 | A Celebration of Literature",
-  description: "Join us for Sahithyotsav — a two-day literary fest featuring debates, poetry, discussions, and stories. March 13 & 14, 2k26.",
+  description: "Join us for Sahithyotsav — a two-day literary fest featuring debates, poetry, discussions, and stories. March 13 & 14, 2026.",
   keywords: ["sahithyotsav", "literary fest", "college event", "poetry", "debates", "literature", "2k26"],
   authors: [{ name: "Sahithyotsav Committee" }],
   openGraph: {

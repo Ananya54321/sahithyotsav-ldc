@@ -84,7 +84,7 @@ export default function Hero() {
                 }}
               >
                 <Calendar size={11} />
-                March 13 & 14, 2k26
+                March 13 & 14, 2026
               </span>
             </motion.div>
 

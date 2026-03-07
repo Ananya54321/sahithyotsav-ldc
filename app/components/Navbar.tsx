@@ -18,6 +18,7 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 const navLinks = [
   { name: "Schedule", link: "/schedule" },
   { name: "Merch", link: "/merch" },
+  { name: "Contact", link: "/#contact" },
 ];
 
 export default function Navbar() {
