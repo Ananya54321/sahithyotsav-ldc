@@ -86,7 +86,7 @@ export default function MerchShowcase() {
                   >
                     <Image
                       src={mugImages[currentMug]}
-                      alt="Sahithyotsav 2026 Ceramic Mug"
+                      alt="Sahithyotsav 2k26 Ceramic Mug"
                       fill
                       className="object-cover transition-transform duration-3000 group-hover:scale-110"
                     />

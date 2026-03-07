@@ -186,7 +186,7 @@ function RegisterPageContent() {
                   ? `Your registration for ${formData.selectedEvent} has been updated, ${formData.fullName}!`
                   : `Thank you for registering for ${formData.selectedEvent}, ${formData.fullName}!`}
               </p>
-              <p className="text-sm text-[#9b9b9b] italic mb-8">We look forward to seeing you at Sahithyotsav 2026!</p>
+              <p className="text-sm text-[#9b9b9b] italic mb-8">We look forward to seeing you at Sahithyotsav 2k26!</p>
               <button onClick={() => { setIsSuccess(false); setIsEditMode(true); }} className="btn-purple-outline">Edit Registration</button>
             </motion.div>
           </Container>

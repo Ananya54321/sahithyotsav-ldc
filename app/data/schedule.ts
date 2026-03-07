@@ -12,7 +12,7 @@ export interface ScheduleDay {
 
 export const schedule: ScheduleDay[] = [
   {
-    day: "Day 1 – 13th March 2026",
+    day: "Day 1 – 13th March 2k26",
     events: [
       {
         session: "Full Day",
@@ -53,7 +53,7 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 2 – 14th March 2026",
+    day: "Day 2 – 14th March 2k26",
     events: [
       {
         session: "Full Day",

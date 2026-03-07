@@ -172,7 +172,7 @@ export default function MerchClient() {
                   >
                     <Image
                       src={mugImages[activeImageIndex]}
-                      alt={`Sahithyotsav 2026 Custom Mug ${activeImageIndex + 1}`}
+                      alt={`Sahithyotsav 2k26 Custom Mug ${activeImageIndex + 1}`}
                       fill
                       className="object-cover"
                       priority

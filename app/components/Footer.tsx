@@ -120,7 +120,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/30 text-xs">
-            © 2026 Sahithyotsav. All rights reserved.
+            © 2k26 Sahithyotsav. All rights reserved.
           </p>
           <p className="text-white/20 text-xs">
             Literary &amp; Debate Club, CVR College Of Engineering
