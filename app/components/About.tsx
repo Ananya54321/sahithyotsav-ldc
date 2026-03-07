@@ -83,7 +83,7 @@ export default function About() {
             WHERE WORDS COME ALIVE
           </ComicText>
           <p className="text-[#4a4a4a] text-lg leading-relaxed">
-            Our literary fest is a celebration of the written and spoken word—a
+            Our literary fest is a celebration of the written and spoken word-a
             space where young minds gather to debate, discuss, recite, and
             create. Over two transformative days, participants engage with
             diverse literary forms, from parliamentary debates to the rhythm of

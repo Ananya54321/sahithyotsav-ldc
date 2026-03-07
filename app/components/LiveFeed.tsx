@@ -137,7 +137,7 @@ export default function LiveFeed() {
             </ComicText>
             <p className="text-white/55 text-base leading-relaxed max-w-md mb-6">
               From heated parliamentary debates to poetic recitals under open
-              skies — here&apos;s a glimpse at the events unfolding across two
+              skies - here&apos;s a glimpse at the events unfolding across two
               exhilarating days.
             </p>
             <div className="flex items-center gap-3">

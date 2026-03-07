@@ -12,7 +12,7 @@ export function OrnamentalDivider({ className = "" }: { className?: string }) {
   );
 }
 
-/* These aren't used in the new Cadbury design — return null to not clutter */
+/* These aren't used in the new Cadbury design - return null to not clutter */
 export function FloatingFeather({ className = "" }: { className?: string }) {
   return null;
 }

@@ -23,7 +23,7 @@ export default function Hero() {
         }}
       />
 
-      {/* ===== 6 DECORATIVE FLOATING ICONS — well-dispersed ===== */}
+      {/* ===== 6 DECORATIVE FLOATING ICONS - well-dispersed ===== */}
       <div
         className="absolute left-[5%] top-[12%] w-10 h-10 md:w-20 md:h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(-10deg)" }}
@@ -63,7 +63,7 @@ export default function Hero() {
 
       {/* ===== HERO CONTENT ===== */}
       <Container className="relative z-10 pt-24 pb-12 lg:py-16 w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-16 lg:gap-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-8 md:24 lg:gap-48">
           {/* Left Content */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left lg:max-w-[55%]">
 

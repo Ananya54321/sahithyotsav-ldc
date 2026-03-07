@@ -232,7 +232,7 @@ export default function ScheduleSection({
 }
 
 /* ────────────────────────────────────────────────
-   Session group — label + desktop table + mobile cards
+   Session group - label + desktop table + mobile cards
    ──────────────────────────────────────────────── */
 
 function EventList({

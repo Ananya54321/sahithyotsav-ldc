@@ -457,7 +457,7 @@ function RegisterPageContent() {
                       {requiresPayment && (
                         <div>
                           <p className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
-                            Payment — ₹{selectedEventConfig!.fee} <span className="text-[#d0a651]">*</span>
+                            Payment - ₹{selectedEventConfig!.fee} <span className="text-[#d0a651]">*</span>
                           </p>
                           <div className="flex flex-col sm:flex-row gap-6 mt-2">
                             {/* QR code */}

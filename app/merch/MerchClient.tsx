@@ -348,7 +348,7 @@ export default function MerchClient() {
                         {/* Payment Section */}
                         <div className="mt-2">
                           <p className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
-                            Payment — ₹200 <span className="text-[#d0a651]">*</span>
+                            Payment - ₹200 <span className="text-[#d0a651]">*</span>
                           </p>
                           <div className="flex flex-col sm:flex-row gap-6 mt-2">
                             {/* QR code */}

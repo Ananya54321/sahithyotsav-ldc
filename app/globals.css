@@ -388,7 +388,7 @@ select:focus {
 
   .chapter-rule::after { --dir: left; }
 
-  /* Removed stubs — kept for zero-breaking-change */
+  /* Removed stubs - kept for zero-breaking-change */
   .gradient-border::before { display: none; }
   .corner-bracket::before,
   .corner-bracket::after { display: none; }
@@ -396,7 +396,7 @@ select:focus {
 } /* end @layer components */
 
 /* ============================================
-   ANIMATIONS (outside @layer — always included)
+   ANIMATIONS (outside @layer - always included)
    ============================================ */
 @keyframes shimmer-gold {
   0% { background-position: -200% center; }
