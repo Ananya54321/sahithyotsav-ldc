@@ -65,6 +65,7 @@ const highlights = [
 
 export default function Highlights() {
   const router = useRouter();
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const isPaused = useRef(false);
   const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -100,6 +101,11 @@ export default function Highlights() {
 
   const handleCardClick = useCallback(
     (title: string) => {
+      if (title === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
+        setToastMessage("Registrations will be open soon!");
+        setTimeout(() => setToastMessage(null), 3000);
+        return;
+      }
       router.push(`/register?event=${encodeURIComponent(title)}`);
     },
     [router]
@@ -228,7 +234,6 @@ export default function Highlights() {
                       color: "white",
                       whiteSpace: isActive ? "normal" : "nowrap",
                       maxWidth: isActive ? "100%" : undefined,
-                      textShadow: "0 2px 8px rgba(0,0,0,0.9)",
                       lineHeight: 1.3,
                     }}
                   >
@@ -271,19 +276,15 @@ export default function Highlights() {
                     <Icon className="w-5 h-5 text-[#2d006b]" />
                   </div>
                   <div
-                    className="font-black uppercase tracking-wider mb-2 text-white"
+                    className="font-black uppercase tracking-wider text-white"
                     style={{
                       fontFamily: "'Bangers', 'Comic Sans MS', sans-serif",
                       fontSize: "1.25rem",
                       letterSpacing: "0.08em",
-                      textShadow: "0 2px 8px rgba(0,0,0,0.9)",
                     }}
                   >
                     {item.title}
                   </div>
-                  <p className="text-white text-sm leading-relaxed" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}>
-                    {item.description}
-                  </p>
                 </div>
               </div>
             );
@@ -303,6 +304,22 @@ export default function Highlights() {
           <path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#2d006b" />
         </svg>
       </div>
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-[#1a0040] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-[#f1cd76]/30"
+          >
+            <div className="w-2 h-2 rounded-full bg-[#f1cd76] animate-pulse" />
+            <span className="text-sm font-semibold tracking-wide" style={{ fontFamily: "var(--font-montserrat)" }}>
+              {toastMessage}
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

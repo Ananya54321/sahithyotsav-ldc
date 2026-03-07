@@ -64,6 +64,7 @@ function RegisterPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState<FormData>(defaultFormData);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -81,9 +82,15 @@ function RegisterPageContent() {
     } catch { /* ignore */ }
     const eventParam = searchParams.get("event");
     if (eventParam && eventsConfig.some((e) => e.name === eventParam)) {
+      if (eventParam === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
+        setToastMessage("Registrations will be open soon!");
+        setTimeout(() => setToastMessage(null), 3000);
+        router.replace("/register");
+        return;
+      }
       setFormData((prev) => ({ ...prev, selectedEvent: eventParam }));
     }
-  }, [searchParams]);
+  }, [searchParams, router]);
 
   const selectedEventConfig = eventsConfig.find((e) => e.name === formData.selectedEvent);
   const requiresPayment = (selectedEventConfig?.fee ?? 0) > 0;
@@ -250,7 +257,14 @@ function RegisterPageContent() {
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      onClick={() => setFormData((prev) => ({ ...prev, selectedEvent: event.name }))}
+                      onClick={() => {
+                        if (event.name === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
+                          setToastMessage("Registrations will be open soon!");
+                          setTimeout(() => setToastMessage(null), 3000);
+                          return;
+                        }
+                        setFormData((prev) => ({ ...prev, selectedEvent: event.name }));
+                      }}
                       className="royal-card p-5 text-left group cursor-pointer"
                     >
                       <div className="flex items-center justify-between">
@@ -506,6 +520,23 @@ function RegisterPageContent() {
           </AnimatePresence>
         </Container>
       </section>
+
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-[#1a0040] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-[#f1cd76]/30"
+          >
+            <div className="w-2 h-2 rounded-full bg-[#f1cd76] animate-pulse" />
+            <span className="text-sm font-semibold tracking-wide" style={{ fontFamily: "var(--font-montserrat)" }}>
+              {toastMessage}
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

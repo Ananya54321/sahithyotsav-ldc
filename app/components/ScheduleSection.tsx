@@ -51,6 +51,7 @@ export default function ScheduleSection({
   dayIndex,
 }: ScheduleSectionProps) {
   const [active, setActive] = useState<ScheduleEvent | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
@@ -64,6 +65,15 @@ export default function ScheduleSection({
   }, [active]);
 
   useOutsideClick(modalRef, () => setActive(null));
+
+  const handleSelect = (event: ScheduleEvent) => {
+    if (event.title === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
+      setToastMessage("Registrations will be open soon!");
+      setTimeout(() => setToastMessage(null), 3000);
+      return;
+    }
+    setActive(event);
+  };
 
   // Events no longer split by session
 
@@ -199,7 +209,24 @@ export default function ScheduleSection({
       </div>
 
       {/* ── All events ── */}
-      <EventList events={events} onSelect={setActive} />
+      <EventList events={events} onSelect={handleSelect} />
+
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {toastMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-[#1a0040] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-[#f1cd76]/30"
+          >
+            <div className="w-2 h-2 rounded-full bg-[#f1cd76] animate-pulse" />
+            <span className="text-sm font-semibold tracking-wide" style={{ fontFamily: "var(--font-montserrat)" }}>
+              {toastMessage}
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.section>
   );
 }
