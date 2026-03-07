@@ -95,7 +95,7 @@ export interface EventConfig {
 }
 
 export const eventsConfig: EventConfig[] = [
-  { name: "Youth Parliament", fee: 100, gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)" },
+  { name: "Youth Parliament", fee: 150, gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)" },
   { name: "Book Fair Stall", fee: 0, gradient: "linear-gradient(135deg, #0f172a 0%, #334155 100%)" },
   { name: "Workshop – Engaging Public Speaking", fee: 0, gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)" },
   { name: "Writers' Hunt: The Literary Quest Competition", fee: 50, gradient: "linear-gradient(135deg, #1a0040 0%, #5a00c8 100%)" },

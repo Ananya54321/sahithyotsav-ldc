@@ -21,19 +21,19 @@ const montserrat = Montserrat({
 
 
 export const metadata: Metadata = {
-  title: "Sahithyotsav 2026 | A Celebration of Literature",
-  description: "Join us for Sahithyotsav — a two-day literary fest featuring debates, poetry, discussions, and stories. March 13-14, 2026.",
-  keywords: ["sahithyotsav", "literary fest", "college event", "poetry", "debates", "literature", "2026"],
+  title: "Sahithyotsav 2k26 | A Celebration of Literature",
+  description: "Join us for Sahithyotsav — a two-day literary fest featuring debates, poetry, discussions, and stories. March 13 & 14, 2k26.",
+  keywords: ["sahithyotsav", "literary fest", "college event", "poetry", "debates", "literature", "2k26"],
   authors: [{ name: "Sahithyotsav Committee" }],
   openGraph: {
-    title: "Sahithyotsav 2026 | A Celebration of Literature",
+    title: "Sahithyotsav 2k26 | A Celebration of Literature",
     description: "A two-day literary fest bringing together debates, poetry, discussions, and stories that inspire and transform.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sahithyotsav 2026",
+    title: "Sahithyotsav 2k26",
     description: "A two-day literary fest bringing together debates, poetry, discussions, and stories.",
   },
   robots: {

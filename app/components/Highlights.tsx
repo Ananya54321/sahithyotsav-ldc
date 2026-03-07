@@ -123,7 +123,7 @@ export default function Highlights() {
               transform: "skewX(-8deg)",
             }}
           >
-            EVENT HIGHLIGHTS
+            EVENT LIST
           </ComicText>
           <p className="text-[#4a4a4a] max-w-2xl mx-auto mt-4 text-base">
             Discover the diverse range of events that make our literary fest a
@@ -131,8 +131,9 @@ export default function Highlights() {
           </p>
         </motion.div>
 
+        {/* Desktop Carousel */}
         <div
-          className="flex flex-col lg:flex-row lg:items-stretch w-full max-w-5xl mx-auto lg:h-[55vh] min-h-[500px] gap-2 lg:gap-3 mb-12"
+          className="hidden lg:flex flex-row items-stretch w-full max-w-5xl mx-auto h-[55vh] min-h-[500px] gap-3 mb-12"
           onMouseLeave={handleContainerLeave}
         >
           {highlights.map((item, index) => {
@@ -206,6 +207,53 @@ export default function Highlights() {
                   >
                     {item.title}
                   </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile Expanded Cards */}
+        <div className="flex lg:hidden flex-col w-full gap-4 mb-4">
+          {highlights.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={`mobile-${item.title}`}
+                className="relative rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-end p-6 min-h-[220px]"
+                style={{ background: item.gradient }}
+                onClick={() => handleCardClick(item.title)}
+              >
+                <div
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                  style={{ opacity: 0.1 }}
+                >
+                  <Icon className="text-white w-32 h-32" strokeWidth={0.5} />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="relative z-10">
+                  <div
+                    className="w-11 h-11 rounded-full flex items-center justify-center mb-4"
+                    style={{
+                      background: "linear-gradient(135deg, #f1cd76, #d0a651)",
+                      boxShadow: "0 4px 14px rgba(209,166,81,0.4)",
+                    }}
+                  >
+                    <Icon className="w-5 h-5 text-[#2d006b]" />
+                  </div>
+                  <div
+                    className="font-black uppercase tracking-wider mb-2 text-white"
+                    style={{
+                      fontFamily: "'Bangers', 'Comic Sans MS', sans-serif",
+                      fontSize: "1.25rem",
+                      letterSpacing: "0.08em",
+                    }}
+                  >
+                    {item.title}
+                  </div>
+                  <p className="text-white/80 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             );

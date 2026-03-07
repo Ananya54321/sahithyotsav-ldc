@@ -65,9 +65,20 @@ export default function MerchClient() {
     e.preventDefault();
     if (!validateForm()) return;
     setIsSubmitting(true);
+    setErrors({});
     
-    // Simulate API call for merch order
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/merch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErrors({ general: data.error ?? "Something went wrong." });
+        setIsSubmitting(false);
+        return;
+      }
       setIsSubmitting(false);
       setIsSuccess(true);
       setFormData({
@@ -81,7 +92,10 @@ export default function MerchClient() {
         customName: "",
         utrNumber: "",
       });
-    }, 1500);
+    } catch {
+      setErrors({ general: "Network error. Please check your connection." });
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -348,9 +362,9 @@ export default function MerchClient() {
                             {/* UTR */}
                             <div className="flex flex-col justify-center flex-grow w-full">
                               <label htmlFor="utrNumber" className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
-                                UTR / Reference Number
+                                UTR / Reference Number <span className="text-[#d0a651]">*</span>
                               </label>
-                              <input type="text" id="utrNumber" name="utrNumber" value={formData.utrNumber} onChange={handleInputChange}
+                              <input required type="text" id="utrNumber" name="utrNumber" value={formData.utrNumber} onChange={handleInputChange}
                                 className={`${inputClass} ${errors.utrNumber ? "border-red-400" : ""}`} placeholder="12-digit UTR number" />
                               <p className="text-[10px] text-[#6b5f8a] mt-1.5 leading-tight">
                                 Unique Transaction Reference (UTR) is a 12-digit number found in your payment app (GPay, PhonePe, etc.) after a successful transaction.

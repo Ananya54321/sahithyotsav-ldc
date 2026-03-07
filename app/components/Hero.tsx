@@ -23,39 +23,39 @@ export default function Hero() {
         }}
       />
 
-      {/* ===== 6 DECORATIVE FLOATING ICONS — all 80px, well-dispersed ===== */}
+      {/* ===== 6 DECORATIVE FLOATING ICONS — well-dispersed ===== */}
       <div
-        className="absolute left-[5%] top-[12%] w-20 h-20 pointer-events-none select-none "
+        className="absolute left-[5%] top-[12%] w-10 h-10 md:w-20 md:h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(-10deg)" }}
       >
         <PenTool className="w-full h-full text-[#cbb386]" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute right-[6%] top-[10%] w-20 h-20 pointer-events-none select-none "
+        className="absolute right-[6%] top-[10%] w-12 h-12 md:w-20 md:h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(5deg)", animationDelay: "1s" }}
       >
         <BookOpen className="w-full h-full text-[#cbb386]" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute left-[4%] top-[55%] w-20 h-20 pointer-events-none select-none "
+        className="absolute left-[4%] top-[55%] w-10 h-10 md:w-20 md:h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(8deg)", animationDelay: "2s" }}
       >
         <Scale className="w-full h-full text-white" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute right-[5%] top-[50%] w-20 h-20 pointer-events-none select-none "
+        className="absolute right-[5%] top-[50%] w-12 h-12 md:w-20 md:h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(25deg)", animationDelay: "3s" }}
       >
         <Wand2 className="w-full h-full text-white" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute left-[15%] bottom-[10%] w-20 h-20 pointer-events-none select-none "
+        className="absolute left-[15%] bottom-[10%] w-10 h-10 md:w-20 md:h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(-20deg)", animationDelay: "4s" }}
       >
         <Feather className="w-full h-full text-[#cbb386]" strokeWidth={0.5} />
       </div>
       <div
-        className="absolute right-[16%] bottom-[10%] w-20 h-20 pointer-events-none select-none "
+        className="absolute right-[16%] bottom-[10%] w-12 h-12 md:w-20 md:h-20 pointer-events-none select-none "
         style={{ opacity: 0.05, transform: "rotate(-5deg)", animationDelay: "5s" }}
       >
         <GraduationCap className="w-full h-full text-white" strokeWidth={0.5} />
@@ -94,7 +94,7 @@ export default function Hero() {
                 fontSize={5}
                 className="mt-2 inline-block"
                 style={{
-                  fontSize: "clamp(3.5rem, 8vw, 5rem)",
+                  fontSize: "clamp(1.5rem, 8vw, 5rem)",
                   backgroundColor: "#f1cd76",
                   backgroundImage:
                     "radial-gradient(circle at 1px 1px, #d0a651 1px, transparent 0)",
@@ -139,24 +139,26 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-wrap justify-center lg:justify-start items-center gap-4"
+              className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start items-center gap-4 w-full"
             >
               <HoverBorderGradient
-                containerClassName="rounded-full"
+                containerClassName="rounded-full w-full sm:w-auto"
                 as="button"
-                className="bg-[#f1cd76] hover:bg-[#d0a651] text-[#1a0040] text-sm px-8 py-3.5 font-bold tracking-[0.15em] uppercase transition-colors"
+                className="w-full sm:w-auto bg-[#f1cd76] hover:bg-[#d0a651] text-[#1a0040] text-xs sm:text-sm px-6 sm:px-8 py-3.5 font-bold tracking-[0.15em] uppercase transition-colors"
                 onClick={() => router.push("/register")}
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 Register Now
               </HoverBorderGradient>
-              <InteractiveHoverButton
-                onClick={() => router.push("/schedule")}
-                className="bg-transparent border-white/60 text-white hover:bg-white/10 px-8 py-3 text-sm font-bold tracking-widest uppercase [&_div.bg-primary]:bg-[#f1cd76] [&_div.text-primary-foreground]:text-[#2d006b]"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                View Schedule
-              </InteractiveHoverButton>
+              <div className="w-full sm:w-auto">
+                <InteractiveHoverButton
+                  onClick={() => router.push("/schedule")}
+                  className="w-full bg-transparent border-white/60 text-white hover:bg-white/10 px-6 sm:px-8 py-3 text-xs sm:text-sm font-bold tracking-widest uppercase [&_div.bg-primary]:bg-[#f1cd76] [&_div.text-primary-foreground]:text-[#2d006b]"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  View Schedule
+                </InteractiveHoverButton>
+              </div>
             </motion.div>
           </div>
 

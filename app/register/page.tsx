@@ -425,7 +425,7 @@ function RegisterPageContent() {
                               <label htmlFor="utrNumber" className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
                                 UTR / Reference Number <span className="text-[#d0a651]">*</span>
                               </label>
-                              <input type="text" id="utrNumber" name="utrNumber" value={formData.utrNumber} onChange={handleInputChange}
+                              <input required type="text" id="utrNumber" name="utrNumber" value={formData.utrNumber} onChange={handleInputChange}
                                 className={`${inputClass} ${errors.utrNumber ? "border-red-400" : ""}`} placeholder="12-digit UTR number" />
                               <p className="text-[10px] text-[#6b5f8a] mt-1.5 leading-tight">
                                 Unique Transaction Reference (UTR) is a 12-digit number found in your payment app (GPay, PhonePe, etc.) after a successful transaction.
