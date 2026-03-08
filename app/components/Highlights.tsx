@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Scale, PenTool, Mic2, HelpCircle, GraduationCap, Wand2, BookOpen, Brain
 } from "lucide-react";
@@ -65,7 +65,7 @@ const highlights = [
 
 export default function Highlights() {
   const router = useRouter();
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
   const [activeIndex, setActiveIndex] = useState(0);
   const isPaused = useRef(false);
   const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -102,8 +102,7 @@ export default function Highlights() {
   const handleCardClick = useCallback(
     (title: string) => {
       if (title === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
-        setToastMessage("Registrations will be open soon!");
-        setTimeout(() => setToastMessage(null), 3000);
+        window.open("https://forms.gle/9AwY3noqBBqpYeDr8", "_blank");
         return;
       }
       router.push(`/register?event=${encodeURIComponent(title)}`);
@@ -304,22 +303,7 @@ export default function Highlights() {
           <path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#2d006b" />
         </svg>
       </div>
-      {/* Toast Notification */}
-      <AnimatePresence>
-        {toastMessage && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-[#1a0040] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-[#f1cd76]/30"
-          >
-            <div className="w-2 h-2 rounded-full bg-[#f1cd76] animate-pulse" />
-            <span className="text-sm font-semibold tracking-wide" style={{ fontFamily: "var(--font-montserrat)" }}>
-              {toastMessage}
-            </span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
     </section>
   );
 }

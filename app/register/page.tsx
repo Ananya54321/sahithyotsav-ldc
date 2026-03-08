@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  CheckCircle, Loader2, AlertCircle, PencilLine, ArrowLeft, Upload, X, IndianRupee,
+  CheckCircle, Loader2, AlertCircle, PencilLine, ArrowLeft, Upload, X, IndianRupee, Clock,
 } from "lucide-react";
 import Container from "../components/Container";
 import { eventsConfig } from "../data/schedule";
@@ -83,8 +83,7 @@ function RegisterPageContent() {
     const eventParam = searchParams.get("event");
     if (eventParam && eventsConfig.some((e) => e.name === eventParam)) {
       if (eventParam === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
-        setToastMessage("Registrations will be open soon!");
-        setTimeout(() => setToastMessage(null), 3000);
+        window.open("https://forms.gle/9AwY3noqBBqpYeDr8", "_blank");
         router.replace("/register");
         return;
       }
@@ -262,8 +261,7 @@ function RegisterPageContent() {
                       transition={{ delay: i * 0.05 }}
                       onClick={() => {
                         if (event.name === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
-                          setToastMessage("Registrations will be open soon!");
-                          setTimeout(() => setToastMessage(null), 3000);
+                          window.open("https://forms.gle/9AwY3noqBBqpYeDr8", "_blank");
                           return;
                         }
                         setFormData((prev) => ({ ...prev, selectedEvent: event.name }));
@@ -278,6 +276,12 @@ function RegisterPageContent() {
                           {event.fee > 0 ? <span className="flex items-center gap-0.5"><IndianRupee size={10} />{event.fee}</span> : "Free"}
                         </span>
                       </div>
+                      {event.name === "Youth Parliament" && (
+                        <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-2.5 py-1 w-fit" style={{ fontFamily: "var(--font-montserrat)" }}>
+                          <Clock size={9} className="shrink-0" />
+                          Closes Mar 11
+                        </div>
+                      )}
                     </motion.button>
                   ))}
                   {/* Custom merch option */}
@@ -301,6 +305,19 @@ function RegisterPageContent() {
               </motion.div>
             ) : (
               <motion.div key="registration-form" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }} className="max-w-5xl mx-auto">
+                {/* Youth Parliament deadline notice */}
+                {formData.selectedEvent === "Youth Parliament" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-4 flex items-center gap-3 px-4 py-3 rounded-xl bg-amber-50 border border-amber-200"
+                  >
+                    <Clock className="w-4 h-4 text-amber-600 shrink-0" />
+                    <p className="text-xs text-amber-800" style={{ fontFamily: "var(--font-montserrat)" }}>
+                      <span className="font-black">Registration closes March 11.</span>{" "}Complete your registration before the deadline to secure your spot!
+                    </p>
+                  </motion.div>
+                )}
                 {/* Back + edit banner */}
                 <div className="flex items-center justify-between mb-4">
                   <button
