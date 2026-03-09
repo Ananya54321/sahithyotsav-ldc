@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import MerchClient from "./MerchClient";
 
 export const metadata = {
@@ -6,5 +7,9 @@ export const metadata = {
 };
 
 export default function MerchPage() {
-  return <MerchClient />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#1a0040] flex items-center justify-center text-white">Loading...</div>}>
+      <MerchClient />
+    </Suspense>
+  );
 }

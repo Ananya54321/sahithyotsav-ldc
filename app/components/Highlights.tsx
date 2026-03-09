@@ -17,31 +17,31 @@ const highlights = [
     description: "Experience the thrill of parliamentary debate. Argue, persuade, and lead in this simulation of democratic discourse.",
     icon: Scale,
     gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)",
-    image: "/events/youth_parliament.png"
+    image: "/posters/youth_parliament.jpeg"
   },
   {
     title: "Writers' Hunt: The Literary Quest Competition",
     description: "A treasure hunt for the literary mind. Solve clues, decode references, and race against time.",
     icon: PenTool,
     gradient: "linear-gradient(135deg, #1a0040 0%, #5a00c8 100%)",
-    image: "/events/writers_hunt.png"
+    image: "/posters/writers_hunt.png"
   },
   {
     title: "Kaavya Manch – Open Mic Poetry",
     description: "A stage for poets to share their verses. Express emotions through the beauty of Hindi and English poetry.",
     icon: Mic2,
     gradient: "linear-gradient(135deg, #2d006b 0%, #8b5cf6 100%)",
-    image: "/events/open_mic.png"
+    image: "/posters/kavyamanch.png"
   },
   {
     title: "Workshop – Engaging Public Speaking",
     description: "Learn the art of articulation and captivate audiences in this hands-on public speaking workshop.",
     icon: HelpCircle,
     gradient: "linear-gradient(135deg, #3d1080 0%, #a78bfa 100%)",
-    image: "/events/public_speaking.png"
+    image: "/posters/workshop_on_public_speaking.png"
   },
   {
-    title: "Workshop – Emotional Intelligence in the Time of Artificial Intelligence",
+    title: "Talk on Emotional Intelligence - Being Human in a High-Tech World",
     description: "Gain insights into managing emotions and maintaining human connection in an increasingly AI-driven world.",
     icon: Brain,
     gradient: "linear-gradient(135deg, #3d1080 0%, #a78bfa 100%)",
@@ -59,7 +59,7 @@ const highlights = [
     description: "Step into the wizarding world. Deliver iconic speeches from the beloved series with passion and flair.",
     icon: Wand2,
     gradient: "linear-gradient(135deg, #2d006b 0%, #c084fc 100%)",
-    image: "/events/harry_potter.png"
+    image: "/posters/harry_potter_declamation.png"
   },
 ];
 
@@ -101,7 +101,7 @@ export default function Highlights() {
 
   const handleCardClick = useCallback(
     (title: string) => {
-      if (title === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
+      if (title === "Talk on Emotional Intelligence - Being Human in a High-Tech World") {
         window.open("https://forms.gle/9AwY3noqBBqpYeDr8", "_blank");
         return;
       }

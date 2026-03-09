@@ -82,7 +82,7 @@ function RegisterPageContent() {
     } catch { /* ignore */ }
     const eventParam = searchParams.get("event");
     if (eventParam && eventsConfig.some((e) => e.name === eventParam)) {
-      if (eventParam === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
+      if (eventParam === "Talk on Emotional Intelligence - Being Human in a High-Tech World") {
         window.open("https://forms.gle/9AwY3noqBBqpYeDr8", "_blank");
         router.replace("/register");
         return;
@@ -260,7 +260,7 @@ function RegisterPageContent() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
                       onClick={() => {
-                        if (event.name === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
+                        if (event.name === "Talk on Emotional Intelligence - Being Human in a High-Tech World") {
                           window.open("https://forms.gle/9AwY3noqBBqpYeDr8", "_blank");
                           return;
                         }
@@ -289,7 +289,7 @@ function RegisterPageContent() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: eventsConfig.length * 0.05 }}
-                    onClick={() => router.push("/merch")}
+                    onClick={() => router.push("/merch?section=order")}
                     className="royal-card p-5 text-left group cursor-pointer border border-[#cbb386]/30 bg-gradient-to-br from-[#f1cd76]/10 to-transparent"
                   >
                     <div className="flex items-center justify-between">
@@ -349,39 +349,13 @@ function RegisterPageContent() {
                   <div className="space-y-4">
                     {/* Event poster */}
                     <div
-                      className="aspect-square w-full rounded-2xl flex flex-col justify-end relative overflow-hidden group p-6"
-                      style={{ background: selectedEventConfig?.gradient ?? "linear-gradient(135deg, #2d006b, #7c3aed)" }}
+                      className="aspect-[4/5] w-full rounded-2xl relative overflow-hidden"
                     >
                       {selectedEventConfig?.image && (
-                        <div className="absolute inset-0 z-0 pointer-events-none">
-                          <Image src={selectedEventConfig.image} alt={formData.selectedEvent} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div className="absolute inset-0 z-0">
+                          <Image src={selectedEventConfig.image} alt={formData.selectedEvent} fill className="object-cover" />
                         </div>
                       )}
-                      
-                      {/* Gradient overlay for text readability */}
-                      <div 
-                        className="absolute inset-0 z-10 pointer-events-none"
-                        style={{ background: selectedEventConfig?.image ? "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 100%)" : "rgba(0,0,0,0.2)" }}
-                      />
-
-                      <div className="relative z-20 text-center">
-                        <span
-                          className="text-white/80 text-[10px] uppercase tracking-[0.2em] font-bold"
-                          style={{ fontFamily: "var(--font-display)" }}
-                        >
-                          Event Poster
-                        </span>
-                        <p
-                          className="text-white font-black text-2xl mt-2 leading-tight"
-                          style={{
-                            fontFamily: "'Bangers', 'Comic Sans MS', sans-serif",
-                            letterSpacing: "0.05em",
-                            textShadow: "0 2px 8px rgba(0,0,0,0.9)"
-                          }}
-                        >
-                          {formData.selectedEvent}
-                        </p>
-                      </div>
                     </div>
 
                   </div>

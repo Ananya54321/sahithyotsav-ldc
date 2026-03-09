@@ -67,7 +67,7 @@ export default function ScheduleSection({
   useOutsideClick(modalRef, () => setActive(null));
 
   const handleSelect = (event: ScheduleEvent) => {
-    if (event.title === "Workshop – Emotional Intelligence in the Time of Artificial Intelligence") {
+    if (event.title === "Talk on Emotional Intelligence - Being Human in a High-Tech World") {
       setToastMessage("Registrations will be open soon!");
       setTimeout(() => setToastMessage(null), 3000);
       return;

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart, Check, Loader2, IndianRupee, AlertCircle } from "lucide-react";
@@ -22,7 +23,15 @@ const mugImages = [
 ];
 
 export default function MerchClient() {
+  const searchParams = useSearchParams();
   const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    if (searchParams.get("section") === "order") {
+      setShowForm(true);
+    }
+  }, [searchParams]);
+
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);

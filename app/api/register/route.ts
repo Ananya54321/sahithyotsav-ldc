@@ -109,7 +109,7 @@ export async function POST(req: NextRequest) {
       "Book Fair Stall": "Book Fair Stall",
       "Workshop – Engaging Public Speaking": "WS – Engaging Public Speaking",
       "Writers' Hunt: The Literary Quest Competition": "Writers' Hunt",
-      "Workshop – Emotional Intelligence in the Time of Artificial Intelligence": "WS – EI in the Time of AI",
+      "Talk on Emotional Intelligence - Being Human in a High-Tech World": "Talk on EI",
       "Alumni Talk": "Alumni Talk",
       "Kaavya Manch – Open Mic Poetry": "Kaavya Manch",
       "Declamation on Harry Potter Series Competition": "Declamation on HP"
