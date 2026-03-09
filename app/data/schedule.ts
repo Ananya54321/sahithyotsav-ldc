@@ -79,7 +79,6 @@ export const schedule: ScheduleDay[] = [
 
 export const eventsList = [
   "Youth Parliament",
-  "Book Fair Stall",
   "Workshop – Engaging Public Speaking",
   "Writers' Hunt: The Literary Quest Competition",
   "Talk on Emotional Intelligence - Being Human in a High-Tech World",
@@ -97,7 +96,6 @@ export interface EventConfig {
 
 export const eventsConfig: EventConfig[] = [
   { name: "Youth Parliament", fee: 150, gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)", image: "/posters/youth_parliament.jpeg" },
-  { name: "Book Fair Stall", fee: 0, gradient: "linear-gradient(135deg, #0f172a 0%, #334155 100%)" },
   { name: "Workshop – Engaging Public Speaking", fee: 30, gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)", image: "/posters/workshop_on_public_speaking.png" },
   { name: "Writers' Hunt: The Literary Quest Competition", fee: 50, gradient: "linear-gradient(135deg, #1a0040 0%, #5a00c8 100%)", image: "/posters/writers_hunt.png" },
   { name: "Talk on Emotional Intelligence - Being Human in a High-Tech World", fee: 50, gradient: "linear-gradient(135deg, #3d1080 0%, #a78bfa 100%)", image: "/events/emotional_intelligence.png" },

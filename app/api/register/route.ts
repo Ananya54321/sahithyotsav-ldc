@@ -106,7 +106,6 @@ export async function POST(req: NextRequest) {
 
     const sheetNameMapping: Record<string, string> = {
       "Youth Parliament": "Youth Parliament",
-      "Book Fair Stall": "Book Fair Stall",
       "Workshop – Engaging Public Speaking": "WS – Engaging Public Speaking",
       "Writers' Hunt: The Literary Quest Competition": "Writers' Hunt",
       "Talk on Emotional Intelligence - Being Human in a High-Tech World": "Talk on EI",
