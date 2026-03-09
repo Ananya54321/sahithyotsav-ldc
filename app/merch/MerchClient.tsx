@@ -17,6 +17,7 @@ const labelClass =
   "block text-[10px] font-black uppercase tracking-widest text-[#2d006b] mb-1";
 
 const mugImages = [
+  "/posters/merch.png",
   "/mug-showcase.jpeg",
   "/mug-face-1.jpeg",
   "/mug-face-2.jpeg",
@@ -191,11 +192,6 @@ export default function MerchClient() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Badges */}
-                <div className="absolute top-6 left-6 flex flex-col gap-2 z-10 pointer-events-none">
-                  <span className="badge-gold shadow-lg">New Arrival</span>
-                  <span className="badge-purple shadow-lg">Limited Stock</span>
-                </div>
               </div>
 
               {/* Carousel Dots */}

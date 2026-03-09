@@ -11,7 +11,7 @@ import { ComicText } from "@/components/ui/comic-text";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 export default function MerchShowcase() {
-  const mugImages = ["/mug-showcase.jpeg", "/mug-face-1.jpeg", "/mug-face-2.jpeg"];
+  const mugImages = ["/posters/merch.png", "/mug-showcase.jpeg", "/mug-face-1.jpeg", "/mug-face-2.jpeg"];
   const [currentMug, setCurrentMug] = useState(0);
 
   useEffect(() => {
