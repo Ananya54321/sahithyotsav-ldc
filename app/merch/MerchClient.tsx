@@ -33,6 +33,7 @@ export default function MerchClient() {
     }
   }, [searchParams]);
 
+  const [paymentMethod, setPaymentMethod] = useState<"phonepe" | "gpay">("phonepe");
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -357,10 +358,28 @@ export default function MerchClient() {
                           </p>
                           <div className="flex flex-col sm:flex-row gap-6 mt-2">
                             {/* QR code */}
-                            <div className="max-w-[200px] sm:max-w-none w-full sm:w-[160px] mx-auto sm:mx-0 shrink-0 aspect-square rounded-xl bg-[#faf9f7] border border-[#2d006b]/10 flex items-center justify-center p-3">
+                            <div className="max-w-[240px] sm:max-w-none w-full sm:w-[220px] mx-auto sm:mx-0 shrink-0 rounded-xl bg-[#faf9f7] border border-[#2d006b]/10 flex flex-col items-center p-3">
+                              <div className="flex gap-2 w-full mb-3">
+                                <button
+                                  type="button"
+                                  onClick={() => setPaymentMethod("phonepe")}
+                                  className={`flex-1 py-1.5 text-[10px] font-bold rounded-md transition-colors ${paymentMethod === "phonepe" ? "bg-[#2d006b] text-white" : "bg-[#2d006b]/10 text-[#2d006b]"}`}
+                                  style={{ fontFamily: "var(--font-montserrat)" }}
+                                >
+                                  PhonePe
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setPaymentMethod("gpay")}
+                                  className={`flex-1 py-1.5 text-[10px] font-bold rounded-md transition-colors ${paymentMethod === "gpay" ? "bg-[#2d006b] text-white" : "bg-[#2d006b]/10 text-[#2d006b]"}`}
+                                  style={{ fontFamily: "var(--font-montserrat)" }}
+                                >
+                                  GPay
+                                </button>
+                              </div>
                               <div className="text-center w-full">
                                 <div className="relative w-full aspect-square mx-auto bg-white rounded-lg mb-2 overflow-hidden border border-[#9b9b9b]/20">
-                                  <Image src="/qr.png" alt="QR Code" fill className="object-cover" />
+                                  <Image src={paymentMethod === "phonepe" ? "/payment/qr-phonepe.png" : "/payment/qr-gpay.jpeg"} alt="QR Code" fill className="object-cover" />
                                 </div>
                                 <span className="text-[10px] text-[#6b5f8a]">Scan to pay ₹200</span>
                               </div>
@@ -369,6 +388,12 @@ export default function MerchClient() {
                             
                             {/* UTR */}
                             <div className="flex flex-col justify-center flex-grow w-full">
+                              <div className="mb-4 text-[11px] bg-[#2d006b]/5 p-3 rounded-xl border border-[#2d006b]/10">
+                                <div className="flex flex-col gap-1 text-[#6b5f8a]">
+                                  <div><span className="font-bold text-[#1a0040]">UPI:</span> Sreeja.reddy24@axl</div>
+                                  <div><span className="font-bold text-[#1a0040]">Number:</span> 9381224396</div>
+                                </div>
+                              </div>
                               <label htmlFor="utrNumber" className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
                                 UTR / Reference Number <span className="text-[#d0a651]">*</span>
                               </label>
