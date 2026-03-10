@@ -127,7 +127,7 @@ function RegisterPageContent() {
       const data = await res.json();
       if (res.status === 409) { setErrors({ email: data.error }); setIsSubmitting(false); return; }
       if (!res.ok) { setErrors({ general: data.error ?? "Something went wrong." }); setIsSubmitting(false); return; }
-      localStorage.setItem(LS_KEY, JSON.stringify(formData));
+      localStorage.removeItem(LS_KEY);
       setSuccessAction(data.action ?? "created");
       setIsSubmitting(false);
       setIsSuccess(true);
@@ -198,7 +198,24 @@ function RegisterPageContent() {
                   : `Thank you for registering for ${formData.selectedEvent}, ${formData.fullName}!`}
               </p>
               <p className="text-sm text-[#9b9b9b] italic mb-8">We look forward to seeing you at Sahithyotsav 2k26!</p>
-              <button onClick={() => { setIsSuccess(false); setIsEditMode(true); }} className="btn-purple-outline">Edit Registration</button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button 
+                  onClick={() => { 
+                    setIsSuccess(false); 
+                    setFormData((prev) => ({ ...prev, selectedEvent: "", utrNumber: "" })); 
+                    setIsEditMode(false); 
+                  }} 
+                  className="btn-gold w-full sm:w-auto"
+                >
+                  Explore Other Events
+                </button>
+                <button 
+                  onClick={() => { setIsSuccess(false); setIsEditMode(true); }} 
+                  className="btn-purple-outline w-full sm:w-auto"
+                >
+                  Edit Registration
+                </button>
+              </div>
             </motion.div>
           </Container>
         </section>
