@@ -64,7 +64,7 @@ function RegisterPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState<FormData>(defaultFormData);
-  const [paymentMethod, setPaymentMethod] = useState<"phonepe" | "gpay">("phonepe");
+  const [paymentMethod, setPaymentMethod] = useState<"phonepe" | "gpay">("gpay");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -457,24 +457,24 @@ function RegisterPageContent() {
                               <div className="flex gap-2 w-full mb-3">
                                 <button
                                   type="button"
-                                  onClick={() => setPaymentMethod("phonepe")}
-                                  className={`flex-1 py-1.5 text-[10px] font-bold rounded-md transition-colors ${paymentMethod === "phonepe" ? "bg-[#2d006b] text-white" : "bg-[#2d006b]/10 text-[#2d006b]"}`}
-                                  style={{ fontFamily: "var(--font-montserrat)" }}
-                                >
-                                  PhonePe
-                                </button>
-                                <button
-                                  type="button"
                                   onClick={() => setPaymentMethod("gpay")}
                                   className={`flex-1 py-1.5 text-[10px] font-bold rounded-md transition-colors ${paymentMethod === "gpay" ? "bg-[#2d006b] text-white" : "bg-[#2d006b]/10 text-[#2d006b]"}`}
                                   style={{ fontFamily: "var(--font-montserrat)" }}
                                 >
                                   GPay
                                 </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setPaymentMethod("phonepe")}
+                                  className={`flex-1 py-1.5 text-[10px] font-bold rounded-md transition-colors ${paymentMethod === "phonepe" ? "bg-[#2d006b] text-white" : "bg-[#2d006b]/10 text-[#2d006b]"}`}
+                                  style={{ fontFamily: "var(--font-montserrat)" }}
+                                >
+                                  PhonePe
+                                </button>
                               </div>
                               <div className="text-center w-full">
                                 <div className="relative w-full aspect-square mx-auto bg-[#f5f5f5] rounded-lg mb-2 overflow-hidden border border-[#9b9b9b]/20">
-                                  <Image src={paymentMethod === "phonepe" ? "/payment/qr-phonepe.png" : "/payment/qr-gpay.jpeg"} alt="QR Code" fill className="object-cover" />
+                                  <Image src={paymentMethod === "gpay" ? "/payment/qr-gpay.jpeg" : "/payment/qr-phonepe.png"} alt="QR Code" fill className="object-cover" />
                                 </div>
                                 <span className="text-[10px] text-[#6b5f8a]">Scan to pay ₹{selectedEventConfig!.fee}</span>
                               </div>
