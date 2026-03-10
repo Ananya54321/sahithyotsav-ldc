@@ -307,16 +307,13 @@ function RegisterPageContent() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: eventsConfig.length * 0.05 }}
-                    onClick={() => router.push("/merch?section=order")}
-                    className="royal-card p-5 text-left group cursor-pointer border border-[#cbb386]/30 bg-gradient-to-br from-[#f1cd76]/10 to-transparent"
+                    onClick={() => router.push("/merch")}
+                    className="royal-card p-5 text-left group cursor-pointer border border-[#cbb386]/30 bg-linear-to-br from-[#f1cd76]/10 to-transparent"
                   >
                     <div className="flex items-center justify-between">
                       <h3 className="text-sm font-bold text-[#1a0040] group-hover:text-[#2d006b] transition-colors" style={{ fontFamily: "var(--font-display)" }}>
                         Merchandise - Customized Mugs
                       </h3>
-                      <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#2d006b]/10 text-[#2d006b]" style={{ fontFamily: "var(--font-display)" }}>
-                        <span className="flex items-center gap-0.5"><IndianRupee size={10} />200</span>
-                      </span>
                     </div>
                   </motion.button>
                 </div>
