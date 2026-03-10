@@ -474,7 +474,7 @@ function RegisterPageContent() {
                               </div>
                               <div className="text-center w-full">
                                 <div className="relative w-full aspect-square mx-auto bg-[#f5f5f5] rounded-lg mb-2 overflow-hidden border border-[#9b9b9b]/20">
-                                  <Image src={paymentMethod === "gpay" ? "/payment/qr-gpay.jpeg" : "/payment/qr-phonepe.png"} alt="QR Code" fill className="object-cover" />
+                                  <Image src={paymentMethod === "gpay" ? "/payment/qr-gpay.jpeg" : "/payment/qr-phonepe.jpeg"} alt="QR Code" fill className="object-cover" />
                                 </div>
                                 <span className="text-[10px] text-[#6b5f8a]">Scan to pay ₹{selectedEventConfig!.fee}</span>
                               </div>
