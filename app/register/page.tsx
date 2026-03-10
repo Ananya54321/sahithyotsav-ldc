@@ -12,7 +12,6 @@ import { eventsConfig } from "../data/schedule";
 import { ComicText } from "@/components/ui/comic-text";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { ShineBorder } from "@/components/ui/shine-border";
-import { Confetti, type ConfettiRef } from "@/components/ui/confetti";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const LS_KEY = "sahithyotsav_registration";
@@ -150,17 +149,14 @@ function RegisterPageContent() {
     if (errors[name as keyof FormErrors]) setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  const confettiRef = useRef<ConfettiRef>(null);
+  const successCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isSuccess && confettiRef.current) {
-      const fire = () => confettiRef.current?.fire({
-        particleCount: 120, spread: 80, origin: { y: 0.6 },
-        colors: ["#f1cd76", "#d0a651", "#2d006b", "#7c3aed", "#ffffff"],
-      });
-      fire();
-      const t = setTimeout(fire, 400);
-      return () => clearTimeout(t);
+    if (isSuccess) {
+      setTimeout(() => {
+        successCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
+
     }
   }, [isSuccess]);
 
@@ -168,7 +164,6 @@ function RegisterPageContent() {
   if (isSuccess) {
     return (
       <div className="flex flex-col min-h-screen">
-        <Confetti ref={confettiRef} className="fixed inset-0 z-[100] pointer-events-none" manualstart />
         <section className="relative bg-[#2d006b] text-white pt-20 pb-28 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(80,0,160,0.4) 0%, transparent 70%)" }} />
           <DotPattern className="text-white/6" width={24} height={24} cr={1.2} />
@@ -186,7 +181,7 @@ function RegisterPageContent() {
         </section>
         <section className="bg-[#f5f5f5] grow py-16">
           <Container>
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="max-w-lg mx-auto royal-card p-10 text-center relative overflow-hidden">
+            <motion.div ref={successCardRef} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="max-w-lg mx-auto royal-card p-10 text-center relative overflow-hidden">
               <ShineBorder shineColor={["#f1cd76", "#d0a651", "#f1cd76"]} borderWidth={2} duration={10} />
               <div className="icon-circle-gold mx-auto mb-6"><CheckCircle className="w-8 h-8 text-[#2d006b]" /></div>
               <ComicText fontSize={2} className="mb-4" style={{ backgroundColor: "#2d006b", backgroundImage: "radial-gradient(circle at 1px 1px, #4a009e 1px, transparent 0)", WebkitTextStroke: `${2 * 0.35}px #f1cd76`, filter: "drop-shadow(3px 3px 0px #1a0040) drop-shadow(2px 2px 0px #d0a651)", transform: "skewX(-8deg)" }}>
@@ -204,13 +199,18 @@ function RegisterPageContent() {
                     setIsSuccess(false); 
                     setFormData((prev) => ({ ...prev, selectedEvent: "", utrNumber: "" })); 
                     setIsEditMode(false); 
+                    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
                   }} 
-                  className="btn-gold w-full sm:w-auto"
+                  className="w-full sm:w-auto bg-[#f1cd76] hover:bg-[#d0a651] text-[#1a0040] text-xs sm:text-sm px-6 sm:px-8 py-3.5 font-bold tracking-[0.15em] uppercase transition-colors rounded-full"
                 >
                   Explore Other Events
                 </button>
                 <button 
-                  onClick={() => { setIsSuccess(false); setIsEditMode(true); }} 
+                  onClick={() => { 
+                    setIsSuccess(false); 
+                    setIsEditMode(true); 
+                    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
+                  }} 
                   className="btn-purple-outline w-full sm:w-auto"
                 >
                   Edit Registration
