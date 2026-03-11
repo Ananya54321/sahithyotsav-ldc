@@ -498,8 +498,8 @@ function RegisterPageContent() {
                             <div className="flex flex-col justify-center grow w-full">
                               <div className="mb-4 text-[11px] bg-[#2d006b]/5 p-3 rounded-xl border border-[#2d006b]/10">
                                 <div className="flex flex-col gap-1 text-[#6b5f8a]">
-                                  <div><span className="font-bold text-[#1a0040]">UPI:</span> Sreeja.reddy24@axl</div>
-                                  <div><span className="font-bold text-[#1a0040]">Number:</span> 9381224396</div>
+                                  <div><span className="font-bold text-[#1a0040]">UPI:</span> 9346251983-2@ibl</div>
+                                  <div><span className="font-bold text-[#1a0040]">Number:</span> 9346251983</div>
                                 </div>
                               </div>
                               <label htmlFor="utrNumber" className={labelClass} style={{ fontFamily: "var(--font-montserrat)" }}>
