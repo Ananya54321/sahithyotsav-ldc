@@ -17,7 +17,8 @@ const highlights = [
     description: "Experience the thrill of parliamentary debate. Argue, persuade, and lead in this simulation of democratic discourse.",
     icon: Scale,
     gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)",
-    image: "/events/youth_parliament.png"
+    image: "/events/youth_parliament.png",
+    closed: true
   },
   {
     title: "Writers' Hunt: The Literary Quest Competition",
@@ -100,12 +101,13 @@ export default function Highlights() {
   }, [handleHoverEnd]);
 
   const handleCardClick = useCallback(
-    (title: string) => {
-      if (title === "Talk on Emotional Intelligence - Being Human in a High-Tech World") {
+    (item: any) => {
+      if (item.closed) return;
+      if (item.title === "Talk on Emotional Intelligence - Being Human in a High-Tech World") {
         window.open("https://forms.gle/9AwY3noqBBqpYeDr8", "_blank");
         return;
       }
-      router.push(`/register?event=${encodeURIComponent(title)}`);
+      router.push(`/register?event=${encodeURIComponent(item.title)}`);
     },
     [router]
   );
@@ -168,7 +170,7 @@ export default function Highlights() {
                   flex: isActive ? 5 : 1,
                   minHeight: isActive ? "280px" : "60px",
                 }}
-                onClick={() => handleCardClick(item.title)}
+                onClick={() => handleCardClick(item)}
                 onMouseEnter={() => handleHoverStart(index)}
                 onMouseLeave={handleHoverEnd}
               >
@@ -205,6 +207,13 @@ export default function Highlights() {
                 </div>
 
                 <div className="relative z-20 h-full flex flex-col justify-end p-5 lg:p-6">
+                  {item.closed && (
+                    <div className="absolute top-6 right-6 z-30">
+                      <div className="bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg rotate-3">
+                        Registration Closed
+                      </div>
+                    </div>
+                  )}
                   {/* Icon badge - only shown when active */}
                   {isActive && (
                     <motion.div
@@ -251,29 +260,41 @@ export default function Highlights() {
             return (
               <div
                 key={`mobile-${item.title}`}
-                className="relative rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-end p-6 min-h-[220px]"
+                className={`relative rounded-2xl overflow-hidden flex flex-col justify-end p-6 min-h-[220px] ${item.closed ? "cursor-not-allowed opacity-80" : "cursor-pointer"}`}
                 style={{ background: item.gradient }}
-                onClick={() => handleCardClick(item.title)}
+                onClick={() => handleCardClick(item)}
               >
                 {/* Background image */}
                 <div className="absolute inset-0 pointer-events-none">
                   {item.image && (
-                    <Image src={item.image} alt={item.title} fill className="object-cover" />
+                    <Image src={item.image} alt={item.title || ""} fill className="object-cover" />
                   )}
                 </div>
 
                 {/* Strong bottom scrim for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/5 z-10" />
+                
                 <div className="relative z-20">
-                  <div
-                    className="w-11 h-11 rounded-full flex items-center justify-center mb-4"
-                    style={{
-                      background: "linear-gradient(135deg, #f1cd76, #d0a651)",
-                      boxShadow: "0 4px 14px rgba(209,166,81,0.4)",
-                    }}
-                  >
-                    <Icon className="w-5 h-5 text-[#2d006b]" />
-                  </div>
+                  {item.closed && (
+                    <div className="absolute top-0 right-0">
+                      <div className="bg-red-600 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
+                        Closed
+                      </div>
+                    </div>
+                  )}
+                  
+                  {Icon && (
+                    <div
+                      className="w-11 h-11 rounded-full flex items-center justify-center mb-4"
+                      style={{
+                        background: "linear-gradient(135deg, #f1cd76, #d0a651)",
+                        boxShadow: "0 4px 14px rgba(209,166,81,0.4)",
+                      }}
+                    >
+                      <Icon className="w-5 h-5 text-[#2d006b]" />
+                    </div>
+                  )}
+                  
                   <div
                     className="font-black uppercase tracking-wider text-white"
                     style={{

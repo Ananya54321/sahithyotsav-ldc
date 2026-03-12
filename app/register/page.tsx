@@ -278,27 +278,37 @@ function RegisterPageContent() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
                       onClick={() => {
+                        if (event.closed) return;
                         if (event.name === "Talk on Emotional Intelligence - Being Human in a High-Tech World") {
                           window.open("https://forms.gle/9AwY3noqBBqpYeDr8", "_blank");
                           return;
                         }
                         setFormData((prev) => ({ ...prev, selectedEvent: event.name }));
                       }}
-                      className="royal-card p-5 text-left group cursor-pointer"
+                      className={`royal-card p-5 text-left group transition-all ${event.closed ? "opacity-60 grayscale cursor-not-allowed border-red-200/50" : "cursor-pointer"}`}
                     >
                       <div className="flex items-center justify-between">
-                        <h3 className="text-sm font-bold text-[#1a0040] group-hover:text-[#2d006b] transition-colors" style={{ fontFamily: "var(--font-display)" }}>
-                          {event.name}
-                        </h3>
-                        <span className={`text-xs font-bold px-3 py-1 rounded-full ${event.fee > 0 ? "bg-[#2d006b]/10 text-[#2d006b]" : "bg-green-100 text-green-700"}`} style={{ fontFamily: "var(--font-display)" }}>
-                          {event.fee > 0 ? <span className="flex items-center gap-0.5"><IndianRupee size={10} />{event.fee}</span> : "Free"}
+                        <div className="space-y-1">
+                          <h3 className={`text-sm font-bold ${event.closed ? "text-[#6b5f8a]" : "text-[#1a0040] group-hover:text-[#2d006b]"} transition-colors`} style={{ fontFamily: "var(--font-display)" }}>
+                            {event.name}
+                          </h3>
+                        </div>
+                        <span className={`text-xs font-bold px-3 py-1 rounded-full ${event.closed ? "bg-red-100 text-red-600" : (event.fee > 0 ? "bg-[#2d006b]/10 text-[#2d006b]" : "bg-green-100 text-green-700")}`} style={{ fontFamily: "var(--font-display)" }}>
+                          {event.closed ? "Closed" : (event.fee > 0 ? <span className="flex items-center gap-0.5"><IndianRupee size={10} />{event.fee}</span> : "Free")}
                         </span>
                       </div>
-                      {event.name === "Youth Parliament" && (
-                        <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-2.5 py-1 w-fit" style={{ fontFamily: "var(--font-montserrat)" }}>
-                          <Clock size={9} className="shrink-0" />
-                          Closes Mar 11
+                      {event.closed ? (
+                        <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-red-700 bg-red-50 border border-red-100 rounded-full px-2.5 py-1 w-fit" style={{ fontFamily: "var(--font-montserrat)" }}>
+                          <X size={9} className="shrink-0" />
+                          Registrations Closed
                         </div>
+                      ) : (
+                        event.name === "Youth Parliament" && (
+                          <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-2.5 py-1 w-fit" style={{ fontFamily: "var(--font-montserrat)" }}>
+                            <Clock size={9} className="shrink-0" />
+                            Closes Mar 11
+                          </div>
+                        )
                       )}
                     </motion.button>
                   ))}
@@ -320,8 +330,33 @@ function RegisterPageContent() {
               </motion.div>
             ) : (
               <motion.div key="registration-form" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }} className="max-w-5xl mx-auto">
-                {/* Youth Parliament deadline notice */}
-                {formData.selectedEvent === "Youth Parliament" && (
+                {/* Closed event notice */}
+                {selectedEventConfig?.closed && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="mb-8 p-8 rounded-2xl bg-red-50 border-2 border-dashed border-red-200 text-center"
+                  >
+                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <X className="w-8 h-8 text-red-600" />
+                    </div>
+                    <h3 className="text-xl font-bold text-red-900 mb-2" style={{ fontFamily: "var(--font-display)" }}>
+                      Registrations are officially closed!
+                    </h3>
+                    <p className="text-red-700 max-w-md mx-auto mb-6 text-sm" style={{ fontFamily: "var(--font-montserrat)" }}>
+                      Thank you for your overwhelming response. The registration window for <span className="font-bold">{selectedEventConfig.name}</span> has ended.
+                    </p>
+                    <button 
+                      onClick={() => setFormData((prev) => ({ ...prev, selectedEvent: "" }))}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-sm transition-colors"
+                    >
+                      <ArrowLeft size={16} /> Explore Other Events
+                    </button>
+                  </motion.div>
+                )}
+
+                {/* Youth Parliament deadline notice (not needed if closed, but keeping structure for reference if we reopen) */}
+                {!selectedEventConfig?.closed && formData.selectedEvent === "Youth Parliament" && (
                   <motion.div
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -376,9 +411,16 @@ function RegisterPageContent() {
                   </div>
 
                   {/* Right column: form */}
-                  <form onSubmit={handleSubmit} className="royal-card p-6 relative overflow-hidden">
+                  <form onSubmit={handleSubmit} className={`royal-card p-6 relative overflow-hidden ${selectedEventConfig?.closed ? "opacity-60 pointer-events-none" : ""}`}>
                     <ShineBorder shineColor={["#f1cd76", "#d0a651", "#f1cd76"]} borderWidth={2} duration={12} />
                     <div className="space-y-4">
+                      {selectedEventConfig?.closed && (
+                        <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-[2px]">
+                          <div className="bg-[#1a0040] text-white px-6 py-3 rounded-xl font-bold shadow-2xl rotate-[-5deg]">
+                            REGISTRATION CLOSED
+                          </div>
+                        </div>
+                      )}
                       <AnimatePresence>
                         {errors.general && (
                           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs">

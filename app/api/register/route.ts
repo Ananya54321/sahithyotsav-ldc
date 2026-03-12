@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { google } from "googleapis";
+import { eventsConfig } from "../../data/schedule";
 
 const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID!;
 
@@ -102,6 +103,11 @@ export async function POST(req: NextRequest) {
 
     if (!selectedEvent) {
       return NextResponse.json({ error: "No event selected. Please select an event." }, { status: 400 });
+    }
+
+    const eventConfig = eventsConfig.find(e => e.name === selectedEvent);
+    if (eventConfig?.closed) {
+      return NextResponse.json({ error: "Registrations for this event have been closed." }, { status: 403 });
     }
 
     const sheetNameMapping: Record<string, string> = {
