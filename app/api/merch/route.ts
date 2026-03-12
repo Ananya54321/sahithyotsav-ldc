@@ -85,6 +85,10 @@ async function isUtrUsedAcrossSheets(sheets: ReturnType<typeof google.sheets>, u
 }
 
 export async function POST(req: NextRequest) {
+  return NextResponse.json(
+    { error: "Merchandise orders are officially closed for Sahithyotsav 2k26." },
+    { status: 403 }
+  );
   try {
     const body = await req.json();
     const {

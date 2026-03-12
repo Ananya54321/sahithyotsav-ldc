@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -100,16 +100,12 @@ export default function MerchShowcase() {
               Custom Sahithyotsav Mugs with your Name. Grab yours today for just ₹200.
             </p>
             <div className="mt-auto w-full max-w-sm">
-              <Link href="/merch" className="w-full block">
-                <HoverBorderGradient
-                  containerClassName="rounded-full w-full"
-                  as="div"
-                  className="bg-[#2d006b] w-full flex items-center justify-center gap-2 hover:bg-primary-dark text-white text-sm px-6 py-3 font-bold tracking-widest uppercase transition-colors"
-                >
-                  <ShoppingCart className="w-4 h-4" />
-                  Buy Now
-                </HoverBorderGradient>
-              </Link>
+              <div className="w-full opacity-60 cursor-not-allowed">
+                <div className="bg-primary-dark/5 text-[#6b5f8a] w-full flex items-center justify-center gap-2 text-sm px-6 py-3 font-bold tracking-widest uppercase border border-[#6b5f8a]/20 rounded-full">
+                  <X className="w-4 h-4" />
+                  Orders Closed
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

@@ -317,13 +317,22 @@ function RegisterPageContent() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: eventsConfig.length * 0.05 }}
-                    onClick={() => router.push("/merch")}
-                    className="royal-card p-5 text-left group cursor-pointer border border-[#cbb386]/30 bg-linear-to-br from-[#f1cd76]/10 to-transparent"
+                    onClick={() => {}}
+                    className="royal-card p-5 text-left group transition-all opacity-60 grayscale cursor-not-allowed border-red-200/50"
                   >
                     <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-bold text-[#1a0040] group-hover:text-[#2d006b] transition-colors" style={{ fontFamily: "var(--font-display)" }}>
-                        Merchandise - Customized Mugs
-                      </h3>
+                      <div className="space-y-1">
+                        <h3 className="text-sm font-bold text-[#6b5f8a]" style={{ fontFamily: "var(--font-display)" }}>
+                          Merchandise - Customized Mugs
+                        </h3>
+                      </div>
+                      <span className="text-xs font-bold px-3 py-1 rounded-full bg-red-100 text-red-600" style={{ fontFamily: "var(--font-display)" }}>
+                        Closed
+                      </span>
+                    </div>
+                    <div className="mt-2.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-red-700 bg-red-50 border border-red-100 rounded-full px-2.5 py-1 w-fit" style={{ fontFamily: "var(--font-montserrat)" }}>
+                      <X size={9} className="shrink-0" />
+                      Orders Closed
                     </div>
                   </motion.button>
                 </div>

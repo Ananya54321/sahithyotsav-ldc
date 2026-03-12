@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Check } from "lucide-react";
+import { Check, X, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { ComicText } from "@/components/ui/comic-text";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
@@ -157,19 +158,18 @@ export default function MerchClient() {
                   </div>
                 </div>
 
-                <div className="mt-10 p-6 md:p-8 rounded-2xl bg-[#2d006b]/5 border border-[#2d006b]/10 text-center relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#f1cd76]/10 rounded-full blur-2xl pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#2d006b]/10 rounded-full blur-2xl pointer-events-none" />
+                <div className="mt-10 p-6 md:p-8 rounded-2xl bg-slate-50 border-2 border-dashed border-slate-200 text-center relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-slate-200/10 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-slate-200/10 rounded-full blur-2xl pointer-events-none" />
                   
-                  <p className="text-xl md:text-2xl font-black text-primary-dark mb-3 relative z-10" style={{ fontFamily: "var(--font-montserrat)" }}>
-                    Ready to get yours?
-                  </p>
-                  <p className="text-[#6b5f8a] mb-6 relative z-10 font-medium">
-                    Contact this number to place your order:
-                  </p>
-                  <a href="tel:+919346251983" className="inline-flex items-center justify-center gap-3 bg-[#f1cd76] text-[#1a0040] px-8 py-4 rounded-full font-black tracking-widest relative z-10" style={{ fontFamily: "var(--font-montserrat)" }}>
-                    +91 93462 51983
-                  </a>
+                  <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-2 relative z-10" style={{ fontFamily: "var(--font-montserrat)" }}>
+                    Orders are closed!
+                  </h3>
+                  
+                  <Link href="/" className="inline-flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-900 text-white px-8 py-3 rounded-full font-bold tracking-widest relative z-10 transition-colors" style={{ fontFamily: "var(--font-montserrat)" }}>
+                    <ArrowLeft className="w-4 h-4" />
+                    BACK TO HOME
+                  </Link>
                 </div>
               </motion.div>
             </div>
