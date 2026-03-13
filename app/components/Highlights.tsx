@@ -25,7 +25,8 @@ const highlights = [
     description: "A treasure hunt for the literary mind. Solve clues, decode references, and race against time.",
     icon: PenTool,
     gradient: "linear-gradient(135deg, #1a0040 0%, #5a00c8 100%)",
-    image: "/events/writers_hunt.png"
+    image: "/events/writers_hunt.png",
+    closed: true
   },
   {
     title: "Kaavya Manch – Open Mic Poetry",

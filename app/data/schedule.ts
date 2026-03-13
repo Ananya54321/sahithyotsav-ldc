@@ -98,7 +98,7 @@ export interface EventConfig {
 export const eventsConfig: EventConfig[] = [
   { name: "Youth Parliament", fee: 150, gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)", image: "/posters/youth_parliament.jpeg", closed: true },
   { name: "Workshop – Engaging Public Speaking", fee: 30, gradient: "linear-gradient(135deg, #4a009e 0%, #7c3aed 100%)", image: "/posters/workshop_on_public_speaking.png" },
-  { name: "Writers' Hunt: The Literary Quest Competition", fee: 50, gradient: "linear-gradient(135deg, #1a0040 0%, #5a00c8 100%)", image: "/posters/writers_hunt.png" },
+  { name: "Writers' Hunt: The Literary Quest Competition", fee: 50, gradient: "linear-gradient(135deg, #1a0040 0%, #5a00c8 100%)", image: "/posters/writers_hunt.png", closed: true },
   { name: "Talk on Emotional Intelligence - Being Human in a High-Tech World", fee: 50, gradient: "linear-gradient(135deg, #3d1080 0%, #a78bfa 100%)", image: "/events/emotional_intelligence.png" },
   { name: "Alumni Talk", fee: 0, gradient: "linear-gradient(135deg, #1a003d 0%, #6d28d9 100%)", image: "/events/alumni_talk.png" },
   { name: "Kaavya Manch – Open Mic Poetry", fee: 0, gradient: "linear-gradient(135deg, #2d006b 0%, #8b5cf6 100%)", image: "/posters/kavyamanch.png" },
